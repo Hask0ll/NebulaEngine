@@ -14,7 +14,7 @@ Pour commencer à utiliser Nebula, assurez-vous d'avoir installé:
 Ouvrez un terminal et clonez le dépôt avec la commande suivante:
 
 ```
-git clone https://votre_repo_git/Nebula.git
+git clone [https://votre_repo_git/Nebula.git](https://github.com/Hask0ll/NebulaEngine.git)
 cd NebulaEngine
 ```
 
