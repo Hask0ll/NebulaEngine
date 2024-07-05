@@ -1,7 +1,0 @@
-# ninja log v5
-2	685	7413878636272181	CMakeFiles/Nebula.dir/Nebula.cpp.obj	b95f440954548742
-685	2719	7413878637623246	Nebula.exe	710763d3f723b8b3
-2	958	7419025544838398	CMakeFiles/NebulaTests.dir/Tests/Units/RunTests.cpp.obj	c31dd81e4969ac1a
-959	1784	7419025547250963	NebulaTests.exe	33e08021fce91f36
-14	527	7419027432610891	CMakeFiles/NebulaTests.dir/Tests/Units/RunTests.cpp.obj	c31dd81e4969ac1a
-528	1070	7419027433575487	NebulaTests.exe	33e08021fce91f36
