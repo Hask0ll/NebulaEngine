@@ -11,6 +11,12 @@ namespace Nebula
 	{
 	}
 
+	/*
+	 * Brief: Run the application
+	 *
+	 *	balbdkjafbe
+	 * @param void
+	 */
 	void Application::Run()
 	{
 		while(true);

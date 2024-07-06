@@ -466,3 +466,9 @@ vcpkg_manifest.txt
 
 # out
 out/
+
+# Doxygen
+doxygen_warnings.txt
+doxygen_warnings.log
+html/
+latex/
