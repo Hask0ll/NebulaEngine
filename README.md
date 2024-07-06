@@ -1,6 +1,6 @@
 # Nebula
 
-Bienvenue sur Nebula, un moteur de jeu custom.
+Bienvenue sur Nebula, un moteur de jeu 3D custom.
 
 ## Prérequis
 Pour commencer à utiliser Nebula, assurez-vous d'avoir installé:
@@ -39,9 +39,14 @@ cmake --build build
 Après la construction, vous pouvez lancer le moteur de jeu en ouvrant le projet dans Visual Studio et en démarrant le projet.
 
 ## Documentation
-Pour plus d'informations sur l'utilisation et le développement avec Nebula, veuillez consulter la documentation disponible dans le dossier docs ou en ligne à l'adresse [votre_lien_documentation].
+Pour plus d'informations sur l'utilisation et le développement avec Nebula, veuillez consulter la documentation disponible dans le dossier docs en utilisant doxygen.
+```
+doxygen NebulaDoc
+```
+
+Une fois la documentation généré lancer **Index.html** depuis l'explorateur de fichier.
 
 ## Licence
-Nebula est distribué sous la licence [nom_de_la_licence]. Voir le fichier LICENSE pour plus d'informations.
+Nebula est distribué sous la licence **Apache-2.0 license**. Voir le fichier LICENSE pour plus d'informations.
 
-By Haskoll.
+By Haskoll (J'ai menti c'est ChatGPT).
