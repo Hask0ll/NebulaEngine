@@ -1,6 +1,6 @@
 # Nebula
 
-Bienvenue sur Nebula, un moteur de jeu custom.
+Bienvenue sur Nebula, un moteur de jeu 3D custom.
 
 ## Prérequis
 Pour commencer à utiliser Nebula, assurez-vous d'avoir installé:
@@ -47,6 +47,6 @@ doxygen NebulaDoc
 Une fois la documentation généré lancer **Index.html** depuis l'explorateur de fichier.
 
 ## Licence
-Nebula est distribué sous la licence [nom_de_la_licence]. Voir le fichier LICENSE pour plus d'informations.
+Nebula est distribué sous la licence **Apache-2.0 license**. Voir le fichier LICENSE pour plus d'informations.
 
 By Haskoll.
