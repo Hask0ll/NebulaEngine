@@ -44,6 +44,8 @@ Pour plus d'informations sur l'utilisation et le développement avec Nebula, veu
 doxygen NebulaDoc
 ```
 
+Une fois la documentation généré lancer **Index.html** depuis l'explorateur de fichier.
+
 ## Licence
 Nebula est distribué sous la licence [nom_de_la_licence]. Voir le fichier LICENSE pour plus d'informations.
 
