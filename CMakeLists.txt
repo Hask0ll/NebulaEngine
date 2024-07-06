@@ -3,6 +3,11 @@
 #
 cmake_minimum_required (VERSION 3.8)
 
+# Properties
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 # Enable Hot Reload for MSVC compilers if supported.
 if (POLICY CMP0141)
   cmake_policy(SET CMP0141 NEW)
@@ -15,22 +20,28 @@ project ("NebulaEngine")
 # Packages
 find_package(fmt CONFIG REQUIRED)
 find_package(GTest CONFIG REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
+
+# Add Shared Library
+add_library(Nebula SHARED  NebulaEngine/src/Core/Application.cpp)
+target_compile_definitions(Nebula PRIVATE NEBULA_EXPORTS)
+target_sources(Nebula
+  PUBLIC
+  FILE_SET HEADERS
+  BASE_DIRS
+  NebulaEngine/include
+  FILES
+  NebulaEngine/include/Core/Core.h NebulaEngine/include/Platforms/Windows/Windows.h NebulaEngine/include/Platforms/Linux/Linux.h NebulaEngine/include/Nebula.h NebulaEngine/include/Core/Application.h
+)
 
 # Add source to this project's executable.
-add_executable (Nebula "Nebula.cpp" "Nebula.h")
-add_executable (NebulaTests "Tests/Units/RunTests.cpp" "Nebula.h")
+add_executable (Game "Game/Game.cpp")
+add_executable (NebulaTests "Tests/Units/RunTests.cpp")
 
 # Link libraries
 target_link_libraries(Nebula PRIVATE fmt::fmt)
-target_link_libraries(NebulaTests PRIVATE fmt::fmt GTest::gtest GTest::gtest_main)
-
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET Nebula PROPERTY CXX_STANDARD 20)
-endif()
+target_link_libraries(Game PRIVATE Nebula)
+target_link_libraries(NebulaTests PRIVATE Nebula fmt::fmt GTest::gtest_main)
 
 # Add tests to CTest
 enable_testing()
 add_test(NAME NebulaTests COMMAND NebulaTests)
-
-# TODO: Add tests and install targets if needed.
