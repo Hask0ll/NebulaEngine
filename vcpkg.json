@@ -1,0 +1,13 @@
+{
+  "dependencies": [
+    "fmt",
+    "glad",
+    "glew",
+    "glfw3",
+    "glm",
+    "gtest",
+    "imgui",
+    "opengl",
+    "spdlog"
+  ]
+}

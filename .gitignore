@@ -462,7 +462,6 @@ CMakeUserPresets.json
 
 # vcpkg
 vcpkg_installed
-vcpkg.json
 vcpkg_manifest.txt
 
 # out
