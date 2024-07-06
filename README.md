@@ -49,4 +49,4 @@ Une fois la documentation généré lancer **Index.html** depuis l'explorateur d
 ## Licence
 Nebula est distribué sous la licence **Apache-2.0 license**. Voir le fichier LICENSE pour plus d'informations.
 
-By Haskoll.
+By Haskoll (J'ai menti c'est ChatGPT).
