@@ -1,7 +1,8 @@
 ﻿
 // For use by Nebula applications
 
-#include "Core/Application.h"
+#include "Core/Engine.h"
+#include "Logger/Log.h"
 
 
 // ----- Entry Point -----

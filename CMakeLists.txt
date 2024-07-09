@@ -20,9 +20,10 @@ project ("NebulaEngine")
 # Packages
 find_package(fmt CONFIG REQUIRED)
 find_package(GTest CONFIG REQUIRED)
+find_package(spdlog CONFIG REQUIRED)
 
 # Add Shared Library
-add_library(Nebula SHARED  NebulaEngine/src/Core/Application.cpp)
+add_library(Nebula SHARED  NebulaEngine/src/Core/Engine.cpp NebulaEngine/src/Logger/Log.cpp)
 target_compile_definitions(Nebula PRIVATE NEBULA_EXPORTS)
 target_sources(Nebula
   PUBLIC
@@ -30,15 +31,21 @@ target_sources(Nebula
   BASE_DIRS
   NebulaEngine/include
   FILES
-  NebulaEngine/include/Core/Core.h NebulaEngine/include/Platforms/Windows/Windows.h NebulaEngine/include/Platforms/Linux/Linux.h NebulaEngine/include/Nebula.h NebulaEngine/include/Core/Application.h
+  NebulaEngine/include/Core/Core.h NebulaEngine/include/Platforms/Windows/Windows.h NebulaEngine/include/Platforms/Linux/Linux.h NebulaEngine/include/Nebula.h NebulaEngine/include/Core/Engine.h NebulaEngine/include/logger/log.h
 )
 
 # Add source to this project's executable.
 add_executable (Game "Game/Game.cpp")
 add_executable (NebulaTests "Tests/Units/RunTests.cpp")
+target_sources(Nebula
+  PUBLIC
+  FILE_SET HEADERS
+  BASE_DIRS
+  spdlog/include
+)
 
 # Link libraries
-target_link_libraries(Nebula PRIVATE fmt::fmt)
+target_link_libraries(Nebula PRIVATE fmt::fmt spdlog::spdlog)
 target_link_libraries(Game PRIVATE Nebula)
 target_link_libraries(NebulaTests PRIVATE Nebula fmt::fmt GTest::gtest_main)
 
