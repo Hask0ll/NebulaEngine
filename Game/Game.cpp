@@ -1,6 +1,6 @@
 #include "Nebula.h"
 
-class Game : public Nebula::Engine
+class Game : public Nebula::Application
 {
 public:
 	Game()
@@ -12,7 +12,7 @@ public:
 	}
 };
 
-Nebula::Engine* Nebula::CreateEngine()
+Nebula::Application* Nebula::CreateApplication()
 {
 	return new Game();
 }

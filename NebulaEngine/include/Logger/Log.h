@@ -25,4 +25,10 @@ namespace Nebula
 	#define NB_CORE_WARN(...)     ::Nebula::Log::GetCoreLogger()->warn(__VA_ARGS__);
 	#define NB_CORE_ERROR(...)    ::Nebula::Log::GetCoreLogger()->error(__VA_ARGS__);
 	#define NB_CORE_CRITICAL(...) ::Nebula::Log::GetCoreLogger()->critical(__VA_ARGS__);
+
+	#define NB_CLIENT_TRACE(...)    ::Nebula::Log::GetClientLogger()->trace(__VA_ARGS__);
+	#define NB_CLIENT_INFO(...)     ::Nebula::Log::GetClientLogger()->info(__VA_ARGS__);
+	#define NB_CLIENT_WARN(...)     ::Nebula::Log::GetClientLogger()->warn(__VA_ARGS__);
+	#define NB_CLIENT_ERROR(...)    ::Nebula::Log::GetClientLogger()->error(__VA_ARGS__);
+	#define NB_CLIENT_CRITICAL(...) ::Nebula::Log::GetClientLogger()->critical(__VA_ARGS__);
 }

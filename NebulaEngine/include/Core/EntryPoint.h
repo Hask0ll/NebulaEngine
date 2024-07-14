@@ -1,12 +1,12 @@
 #ifdef _WIN32
 
-extern Nebula::Engine* Nebula::CreateEngine();
+extern Nebula::Application* Nebula::CreateApplication();
 
 int main(int ac, char** av)
 {
-	auto app = Nebula::CreateEngine();
+	auto app = Nebula::CreateApplication();
 	app->Run();
-	delete app;
+	delete app; 
 }
 
 #endif

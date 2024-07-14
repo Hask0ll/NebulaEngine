@@ -1,21 +1,28 @@
-#include "Core/Engine.h"
+#include "Core/Application.h"
+
+#include "Events/ApplicationEvent.h"
+#include "Events/KeyEvent.h"
+#include "Logger/Log.h"
 
 namespace Nebula
 {
-	Engine::Engine()
+	Application::Application()
 	{
 	}
 
-	Engine::~Engine()
+	Application::~Application()
 	{
 		Log::Shutdown();
 	}
 
-	void Engine::Run()
+	void Application::Run()
 	{
 		Log::Init();
 
-		NB_CORE_INFO("Nebula Engine is Running !");
+		NB_CORE_TRACE("Nebula Engine is Running !");
+		NB_CORE_TRACE("Initialyse Log.");
+		NB_CLIENT_INFO("Hello !");
+
 		while(true);
 	}
 }
