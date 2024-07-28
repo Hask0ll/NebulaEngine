@@ -31,7 +31,7 @@ target_sources(Nebula
   BASE_DIRS
   NebulaEngine/include
   FILES
-  NebulaEngine/include/Core/Core.h NebulaEngine/include/Events/ApplicationEvent.h NebulaEngine/include/Platforms/Windows/Windows.h NebulaEngine/include/Platforms/Linux/Linux.h 
+  NebulaEngine/include/Core/Core.h NebulaEngine/include/Events/ApplicationEvent.h NebulaEngine/include/Platforms/Linux/Linux.h 
   NebulaEngine/include/Nebula.h NebulaEngine/include/Core/Application.h NebulaEngine/include/logger/log.h NebulaEngine/include/Events/Event.h NebulaEngine/include/Events/KeyEvent.h NebulaEngine/include/Events/MouseEvent.h
 )
 
