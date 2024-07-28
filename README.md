@@ -17,7 +17,7 @@ Ouvrez un terminal et clonez le dépôt avec la commande suivante:
 git clone (https://github.com/Hask0ll/NebulaEngine.git)
 cd NebulaEngine
 ```
-### <p style="color:red;">Avec Bash</p>
+### Avec Bash
 
 #### Etape 2: Installer les dépendances avec vcpkg
 Assurez-vous d'avoir *vcpkg* installé et intégré à votre environnement de développement. Exécutez ensuite:
@@ -36,7 +36,7 @@ cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=[vcpkg root]/scripts/buildsystems/vcp
 cmake --build build
 ```
 
-### <p style="color:red;">Avec Visual Studio</p>
+### Avec Visual Studio
 
 #### Étape 2: Construire avec CMake
 Générez les fichiers de projet pour *Visual* *Studio* en appuyant sur le bouton : **Générer**
