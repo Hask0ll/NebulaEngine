@@ -3,8 +3,8 @@
 #include <functional>
 #include <string>
 
-#include "Core.h"
-#include "Events/Event.h"
+#include "../Core/Core.h"
+#include "../Events/Event.h"
 
 namespace Nebula
 {

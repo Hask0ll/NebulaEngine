@@ -23,6 +23,8 @@ namespace Nebula
 		NB_CORE_TRACE("Initialyse Log.");
 		NB_CLIENT_INFO("Hello !");
 
+		WindowResizeEvent e(1280, 720);
+
 		while(true);
 	}
 }
