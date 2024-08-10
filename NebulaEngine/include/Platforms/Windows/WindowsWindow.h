@@ -2,7 +2,6 @@
 
 #include <memory>
 
-#include "Renderer/Graphics/GraphicsContext.h"
 #include "window/Window.h"
 
 namespace Nebula
@@ -30,7 +29,7 @@ namespace Nebula
 	private:
 		struct Internal;
 		std::unique_ptr<Internal> m_impl;
-		GraphicsContext* m_Context;
+		OpenGLContext* m_Context;
 
 		struct WindowData
 		{

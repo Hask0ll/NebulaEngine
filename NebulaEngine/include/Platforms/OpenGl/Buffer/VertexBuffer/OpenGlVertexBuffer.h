@@ -7,12 +7,12 @@
 
 namespace Nebula
 {
-	class OpenGlVertexBuffer : public VertexBuffer
+	class OpenGLVertexBuffer : public VertexBuffer
 	{
 	public:
-		OpenGlVertexBuffer(float* vertices, uint32_t size);
+		OpenGLVertexBuffer(float* vertices, uint32_t size);
 
-		virtual ~OpenGlVertexBuffer();
+		virtual ~OpenGLVertexBuffer();
 		virtual void Bind() const override;
 		virtual void UnBind() const override;
 

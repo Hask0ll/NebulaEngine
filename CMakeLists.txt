@@ -20,19 +20,29 @@ project ("NebulaEngine")
 # Packages
 find_package(fmt CONFIG REQUIRED)
 find_package(GTest CONFIG REQUIRED)
+find_package(glad CONFIG REQUIRED)
+find_package(glfw3 CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 
 # Add Shared Library
-add_library(Nebula SHARED  NebulaEngine/src/Core/Engine.cpp NebulaEngine/src/Logger/Log.cpp)
+add_library(Nebula SHARED  NebulaEngine/src/Core/Application.cpp NebulaEngine/src/Logger/Log.cpp NebulaEngine/src/Platforms/Windows/WindowsWindow.cpp NebulaEngine/src/Platforms/OpenGL/Context/OpenGLContext.cpp)
 target_compile_definitions(Nebula PRIVATE NEBULA_EXPORTS)
+
 target_sources(Nebula
   PUBLIC
   FILE_SET HEADERS
   BASE_DIRS
   NebulaEngine/include
   FILES
-  NebulaEngine/include/Core/Core.h NebulaEngine/include/Events/ApplicationEvent.h NebulaEngine/include/Window/Window.h NebulaEngine/include/Platforms/Linux/Linux.h 
-  NebulaEngine/include/Nebula.h NebulaEngine/include/Core/Application.h NebulaEngine/include/logger/log.h NebulaEngine/include/Events/Event.h NebulaEngine/include/Events/KeyEvent.h NebulaEngine/include/Events/MouseEvent.h
+  NebulaEngine/include/Nebula.h
+  NebulaEngine/include/logger/log.h 
+  NebulaEngine/include/Window/Window.h 
+  NebulaEngine/include/Core/Core.h NebulaEngine/include/Core/Application.h
+  NebulaEngine/include/Events/Event.h NebulaEngine/include/Events/KeyEvent.h NebulaEngine/include/Events/MouseEvent.h NebulaEngine/include/Events/ApplicationEvent.h
+  NebulaEngine/include/Platforms/Linux/Linux.h
+  NebulaEngine/include/Platforms/Windows/WindowsWindow.h NebulaEngine/include/Platforms/Windows/WindowsInput.h
+  NebulaEngine/include/Platforms/OpenGL/Buffer/IndexBuffer/OpenGLIndexBuffer.h NebulaEngine/include/Platforms/OpenGL/Buffer/VertexBuffer/OpenGLVertexBuffer.h NebulaEngine/include/Platforms/OpenGL/Context/OpenGLContext.h NebulaEngine/include/Platforms/OpenGL/VertexArray/OpenGLVertexArray.h NebulaEngine/include/Platforms/OpenGL/Renderer/OpenGLRendererAPI.h
+  NebulaEngine/include/Renderer/Graphics/GraphicsContext.h
 )
 
 # Add source to this project's executable.
@@ -46,7 +56,7 @@ target_sources(Nebula
 )
 
 # Link libraries
-target_link_libraries(Nebula PRIVATE fmt::fmt spdlog::spdlog)
+target_link_libraries(Nebula PRIVATE fmt::fmt spdlog::spdlog glad::glad glfw)
 target_link_libraries(Game PRIVATE Nebula)
 target_link_libraries(NebulaTests PRIVATE Nebula fmt::fmt GTest::gtest_main)
 

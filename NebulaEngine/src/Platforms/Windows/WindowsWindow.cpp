@@ -1,17 +1,18 @@
-#include "Platform/windows/WindowsWindow.h"
+#include "Window/Window.h"
 
 #include "Events/KeyEvent.h"
 #include "Events/ApplicationEvent.h"
 #include "Events/MouseEvent.h"
 #include <glad/glad.h>
 #include "GLFW/glfw3.h"
-#include "Platform/OpenGl/OpenGlContext.h"
-#include "Timestep/Timestep.h"
+#include "Platforms/OpenGL/Context/OpenGLContext.h"
+#include "Platforms/Windows/WindowsWindow.h"
+
 #include "Logger/Log.h"
 
 namespace Nebula
 {
-	static bool s_GLFWInitialized = false;
+	bool s_GLFWInitialized = false;
 
 	struct WindowsWindow::Internal
 	{
@@ -45,7 +46,7 @@ namespace Nebula
 			// TODO: glfwTerminate on system shutdown
 			int succes = glfwInit();
 
-			NEBULA_CORE_ASSERT(success, "Could not initialize GLFW !");
+			NB_CORE_INFO(succes);
 
 			glfwWindowHint(GLFW_CLIENT_API, GLFW_OPENGL_API);
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -66,10 +67,6 @@ namespace Nebula
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 			int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-#ifndef _DEBUG
-			if (status)
-				Logger::Log(Logger::Error, "Failed to initialize Glad!");
-#endif
 			glfwSetWindowUserPointer(m_impl->m_Window, &m_Data);
 			SetVSync(true);
 		}

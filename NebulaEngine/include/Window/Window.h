@@ -19,7 +19,7 @@ namespace Nebula
 			unsigned int height = 720) : Title(title), Width(width), Height(height) {}
 	};
 
-	class NEBULA_API Window
+	class NEBULA Window
 	{
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;

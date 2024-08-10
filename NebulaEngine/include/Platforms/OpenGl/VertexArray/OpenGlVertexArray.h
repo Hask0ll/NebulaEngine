@@ -7,11 +7,11 @@
 
 namespace Nebula
 {
-	class OpenGlVertexArray : public VertexArray
+	class OpenGLVertexArray : public VertexArray
 	{
 	public:
-		OpenGlVertexArray();
-		virtual ~OpenGlVertexArray() override = default;
+		OpenGLVertexArray();
+		virtual ~OpenGLVertexArray() override = default;
 
 		virtual void Bind() const override;
 		virtual void UnBind() const override;
