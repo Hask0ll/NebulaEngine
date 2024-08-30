@@ -19,6 +19,11 @@ namespace Nebula
 		GLFWwindow* m_Window;
 	};
 
+	static void GLFWErrorCallBack(int error, const char* description)
+	{
+		NB_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
+	}
+
 	Window* Window::Create(const WindowProps& props)
 	{
 		return new WindowsWindow(props);
@@ -41,12 +46,14 @@ namespace Nebula
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
 
+		//NB_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
+
 		if (s_GLFWInitialized == 0)
 		{
 			// TODO: glfwTerminate on system shutdown
 			int succes = glfwInit();
 
-			NB_CORE_INFO(succes);
+			glfwSetErrorCallback(GLFWErrorCallBack);
 
 			glfwWindowHint(GLFW_CLIENT_API, GLFW_OPENGL_API);
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);

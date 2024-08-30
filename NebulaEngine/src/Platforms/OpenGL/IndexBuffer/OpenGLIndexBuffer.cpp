@@ -1,8 +1,6 @@
-#include "platform/OpenGL/Buffer/OpenGLIndexBuffer.h"
+#include "Platforms/OpenGL/Buffer/IndexBuffer/OpenGLIndexBuffer.h"
 
 #include <glad/glad.h>
-
-#include "Renderer/Buffer/IndexBuffer.h"
 
 namespace Nebula
 {

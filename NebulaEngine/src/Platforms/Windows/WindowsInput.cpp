@@ -1,8 +1,7 @@
-#include "platform/windows/WindowsInput.h"
+#include "Core/Application.h"
+#include "Platforms/Windows/WindowsInput.h"
 
 #include <GLFW/glfw3.h>
-
-#include "Application.h"
 
 namespace Nebula
 {
@@ -10,14 +9,14 @@ namespace Nebula
 
 	bool WindowsInput::IsKeyPressedImpl(int keycode)
 	{
-		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow()->NativeWindow());
+		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().NativeWindow());
 		auto state = glfwGetKey(window, keycode);
 		return state == GLFW_PRESS || state == GLFW_REPEAT;
 	}
 
 	bool WindowsInput::IsMouseButtonPressedImpl(int button)
 	{
-		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow()->NativeWindow());
+		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().NativeWindow());
 		auto state = glfwGetMouseButton(window, button);
 		return state == GLFW_PRESS;
 	}

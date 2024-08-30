@@ -25,7 +25,15 @@ find_package(glfw3 CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 
 # Add Shared Library
-add_library(Nebula SHARED  NebulaEngine/src/Core/Application.cpp NebulaEngine/src/Logger/Log.cpp NebulaEngine/src/Platforms/Windows/WindowsWindow.cpp NebulaEngine/src/Platforms/OpenGL/Context/OpenGLContext.cpp)
+add_library(Nebula 
+	SHARED
+	NebulaEngine/src/Core/Application.cpp 
+	NebulaEngine/src/Logger/Log.cpp 
+	NebulaEngine/src/Platforms/Windows/WindowsWindow.cpp NebulaEngine/src/Platforms/Windows/WindowsInput.cpp
+	NebulaEngine/src/Platforms/OpenGL/Context/OpenGLContext.cpp NebulaEngine/src/Platforms/OpenGL/IndexBuffer/OpenGLIndexBuffer.cpp NebulaEngine/src/Platforms/OpenGL/RendererApi/OpenGLRendererApi.cpp NebulaEngine/src/Platforms/OpenGL/VertexArray/OpenGLVertexArray.cpp NebulaEngine/src/Platforms/OpenGL/VertexBuffer/OpenGLVertexBuffer.cpp
+	NebulaEngine/src/Renderer/Graphics/GraphicsContext.cpp
+	NebulaEngine/src/Inputs/InputManager.cpp
+	)
 target_compile_definitions(Nebula PRIVATE NEBULA_EXPORTS)
 
 target_sources(Nebula
@@ -37,12 +45,14 @@ target_sources(Nebula
   NebulaEngine/include/Nebula.h
   NebulaEngine/include/logger/log.h 
   NebulaEngine/include/Window/Window.h 
-  NebulaEngine/include/Core/Core.h NebulaEngine/include/Core/Application.h
+  NebulaEngine/include/Core/Core.h NebulaEngine/include/Core/Application.h NebulaEngine/include/Core/EntryPoint.h
   NebulaEngine/include/Events/Event.h NebulaEngine/include/Events/KeyEvent.h NebulaEngine/include/Events/MouseEvent.h NebulaEngine/include/Events/ApplicationEvent.h
   NebulaEngine/include/Platforms/Linux/Linux.h
   NebulaEngine/include/Platforms/Windows/WindowsWindow.h NebulaEngine/include/Platforms/Windows/WindowsInput.h
   NebulaEngine/include/Platforms/OpenGL/Buffer/IndexBuffer/OpenGLIndexBuffer.h NebulaEngine/include/Platforms/OpenGL/Buffer/VertexBuffer/OpenGLVertexBuffer.h NebulaEngine/include/Platforms/OpenGL/Context/OpenGLContext.h NebulaEngine/include/Platforms/OpenGL/VertexArray/OpenGLVertexArray.h NebulaEngine/include/Platforms/OpenGL/Renderer/OpenGLRendererAPI.h
-  NebulaEngine/include/Renderer/Graphics/GraphicsContext.h
+  NebulaEngine/include/Renderer/Graphics/GraphicsContext.h NebulaEngine/include/Renderer/Render/Render.h NebulaEngine/include/Renderer/Render/Shader/Shader.h NebulaEngine/include/Renderer/Render/Texture/Texture.h NebulaEngine/include/Renderer/VertexArray/VertexArray.h NebulaEngine/include/Renderer/Buffer/VertexBuffer/VertexBuffer.h NebulaEngine/include/Renderer/Buffer/IndexBuffer/IndexBuffer.h NebulaEngine/include/Renderer/Buffer/Layout/BufferLayout.h NebulaEngine/include/Renderer/Buffer/Buffer.h NebulaEngine/include/Renderer/Manager/RendererManager.h NebulaEngine/include/Renderer/Api/RendererApi.h
+  NebulaEngine/include/Inputs/InputManager.h
+
 )
 
 # Add source to this project's executable.

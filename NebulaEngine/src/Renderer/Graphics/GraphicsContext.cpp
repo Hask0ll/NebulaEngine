@@ -2,7 +2,7 @@
 
 #include "Renderer/Graphics/GraphicsContext.h"
 
-#include "Platforms/OpenGL/OpenGLContext.h"
+#include "Platforms/OpenGL/Context/OpenGLContext.h"
 #include "Renderer/Render/Render.h"
 
 namespace Nebula

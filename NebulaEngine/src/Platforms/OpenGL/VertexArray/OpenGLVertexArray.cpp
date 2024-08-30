@@ -1,8 +1,9 @@
-#include "platform/OpenGL/VertexArray/OpenGLVertexArray.h"
+#include "Platforms/OpenGL/VertexArray/OpenGLVertexArray.h"
 
+#include <GL/gl.h>
 #include <glad/glad.h>
 
-#include "Debug/Logger.h"
+#include "Logger/Log.h"
 
 namespace Nebula
 {
@@ -28,7 +29,6 @@ namespace Nebula
 
 	OpenGLVertexArray::OpenGLVertexArray()
 	{
-		Logger::Log(Logger::Info, "Creating vertex arrays");
 		glCreateVertexArrays(1, &m_RendererID);
 	}
 

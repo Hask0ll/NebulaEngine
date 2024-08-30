@@ -5,10 +5,16 @@
 #include "Events/Event.h"
 #include "Window/Window.h"
 
+/*
+ * @file Application.h
+ * @auhor Haskoll
+ * @date 2024
+ */
+
 namespace Nebula
 {
 	/**
-	 * \brief 
+	 * \brief Application class
 	 */
 	class NEBULA Application
 	{

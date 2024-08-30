@@ -1,13 +1,12 @@
 #pragma once
 
+#include "Renderer/VertexArray/VertexArray.h"
 #include <memory>
 #include <vector>
 
-#include "Renderer/VertexArray/VertexArray.h"
-
 namespace Nebula
 {
-	class OpenGLVertexArray : public VertexArray
+	class NEBULA OpenGLVertexArray : public VertexArray
 	{
 	public:
 		OpenGLVertexArray();
@@ -19,8 +18,8 @@ namespace Nebula
 		virtual void AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer) override;
 		virtual void SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer) override;
 
-		virtual const std::vector<std::shared_ptr<VertexBuffer>>& GetVertexBuffers() const { return m_VertexBuffer; };
-		virtual const std::shared_ptr<IndexBuffer>& GetIndexBuffer() const { return m_IndexBuffer; };
+		virtual const std::vector<std::shared_ptr<VertexBuffer>>& GetVertexBuffers() const override { return m_VertexBuffer; };
+		virtual const std::shared_ptr<IndexBuffer>& GetIndexBuffer() const override { return m_IndexBuffer; };
 	private:
 		uint32_t m_RendererID;
 		std::vector<std::shared_ptr<VertexBuffer>> m_VertexBuffer;

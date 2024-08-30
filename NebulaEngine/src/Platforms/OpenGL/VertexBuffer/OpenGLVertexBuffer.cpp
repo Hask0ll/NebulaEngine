@@ -1,8 +1,5 @@
-#include "platform/OpenGL/Buffer/OpenGLVertexBuffer.h"
-
+#include "Platforms/OpenGL/Buffer/VertexBuffer/OpenGLVertexBuffer.h"
 #include <glad/glad.h>
-
-#include "Renderer/Buffer/VertexBuffer.h"
 
 namespace Nebula
 {

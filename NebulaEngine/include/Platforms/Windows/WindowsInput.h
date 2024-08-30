@@ -2,7 +2,7 @@
 
 #include <utility>
 
-#include "Input/InputManager.h"
+#include "Inputs/InputManager.h"
 
 namespace Nebula
 {
