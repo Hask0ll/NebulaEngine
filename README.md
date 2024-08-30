@@ -1,6 +1,6 @@
 # Nebula
 
-Bienvenue sur Nebula, un moteur de jeu 3D custom.
+Bienvenue sur Nebula, un moteur de jeu 3D custom qui a pour objectif d'être un outils de simulation spatial.
 
 ## Prérequis
 Pour commencer à utiliser Nebula, assurez-vous d'avoir installé:
