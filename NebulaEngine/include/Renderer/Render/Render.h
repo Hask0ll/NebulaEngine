@@ -1,10 +1,11 @@
 #pragma once
 
+#include "Core/Core.h"
 #include <glm/fwd.hpp>
 
-namespace KDME
+namespace Nebula
 {
-	class Renderer
+	class NEBULA Renderer
 	{
 	public:
 		static void Init();
