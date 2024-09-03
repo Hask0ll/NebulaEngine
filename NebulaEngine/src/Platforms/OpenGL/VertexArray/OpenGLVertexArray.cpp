@@ -1,6 +1,5 @@
 #include "Platforms/OpenGL/VertexArray/OpenGLVertexArray.h"
 
-#include <GL/gl.h>
 #include <glad/glad.h>
 
 #include "Logger/Log.h"
@@ -67,5 +66,4 @@ namespace Nebula
 
 		m_IndexBuffer = indexBuffer;
 	}
-
 }

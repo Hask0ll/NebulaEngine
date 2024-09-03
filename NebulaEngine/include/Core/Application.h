@@ -20,7 +20,7 @@ namespace Nebula
 	 * The main class responsible for managing the application's lifecycle, handling events,
 	 * and managing the main window.
 	 */
-	class NEBULA Application
+	class Application
 	{
 	public:
 		/**

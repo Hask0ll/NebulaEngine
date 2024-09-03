@@ -22,7 +22,6 @@ namespace Nebula
 
 	void Application::OnEvent(Event& e)
 	{
-		NB_CORE_INFO("{0}", e);
 	}
 
 	void Application::Run()

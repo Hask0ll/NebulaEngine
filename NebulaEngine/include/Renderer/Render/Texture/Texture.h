@@ -1,14 +1,13 @@
 #pragma once
 
 #include <string>
-#include <glm/fwd.hpp>
 
-#include "Core.h"
+#include "Core/Core.h"
 
 /**
  * \brief OpenGl Texture implementation
  */
-class NEBULA_API Texture
+class NEBULA Texture
 {
 public:
 	Texture(const std::string& path);

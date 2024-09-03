@@ -19,19 +19,35 @@ project ("NebulaEngine")
 
 # Packages
 find_package(fmt CONFIG REQUIRED)
+find_package(glm CONFIG REQUIRED)
 find_package(GTest CONFIG REQUIRED)
 find_package(glad CONFIG REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)
+find_package(glew CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
+
+include_directories(${GLM_INCLUDE_DIRS})
 
 # Add Shared Library
 add_library(Nebula 
 	SHARED
-	NebulaEngine/src/Core/Application.cpp 
+
+	# Core
+	NebulaEngine/src/Core/Application.cpp
+
+	# Logger
 	NebulaEngine/src/Logger/Log.cpp 
+
+	# Platform - Windows
 	NebulaEngine/src/Platforms/Windows/WindowsWindow.cpp NebulaEngine/src/Platforms/Windows/WindowsInput.cpp
+	
+	# Platform - OpenGL
 	NebulaEngine/src/Platforms/OpenGL/Context/OpenGLContext.cpp NebulaEngine/src/Platforms/OpenGL/IndexBuffer/OpenGLIndexBuffer.cpp NebulaEngine/src/Platforms/OpenGL/RendererApi/OpenGLRendererApi.cpp NebulaEngine/src/Platforms/OpenGL/VertexArray/OpenGLVertexArray.cpp NebulaEngine/src/Platforms/OpenGL/VertexBuffer/OpenGLVertexBuffer.cpp
+	
+	# Renderer - Graphics
 	NebulaEngine/src/Renderer/Graphics/GraphicsContext.cpp
+
+	# Inputs
 	NebulaEngine/src/Inputs/InputManager.cpp
 	)
 target_compile_definitions(Nebula PRIVATE NEBULA_EXPORTS)
@@ -43,21 +59,44 @@ target_sources(Nebula
   NebulaEngine/include
   FILES
   NebulaEngine/include/Nebula.h
-  NebulaEngine/include/logger/log.h 
-  NebulaEngine/include/Window/Window.h 
-  NebulaEngine/include/Core/Core.h NebulaEngine/include/Core/Application.h NebulaEngine/include/Core/EntryPoint.h
-  NebulaEngine/include/Events/Event.h NebulaEngine/include/Events/KeyEvent.h NebulaEngine/include/Events/MouseEvent.h NebulaEngine/include/Events/ApplicationEvent.h
-  NebulaEngine/include/Platforms/Linux/Linux.h
-  NebulaEngine/include/Platforms/Windows/WindowsWindow.h NebulaEngine/include/Platforms/Windows/WindowsInput.h
-  NebulaEngine/include/Platforms/OpenGL/Buffer/IndexBuffer/OpenGLIndexBuffer.h NebulaEngine/include/Platforms/OpenGL/Buffer/VertexBuffer/OpenGLVertexBuffer.h NebulaEngine/include/Platforms/OpenGL/Context/OpenGLContext.h NebulaEngine/include/Platforms/OpenGL/VertexArray/OpenGLVertexArray.h NebulaEngine/include/Platforms/OpenGL/Renderer/OpenGLRendererAPI.h
-  NebulaEngine/include/Renderer/Graphics/GraphicsContext.h NebulaEngine/include/Renderer/Render/Render.h NebulaEngine/include/Renderer/Render/Shader/Shader.h NebulaEngine/include/Renderer/Render/Texture/Texture.h NebulaEngine/include/Renderer/VertexArray/VertexArray.h NebulaEngine/include/Renderer/Buffer/VertexBuffer/VertexBuffer.h NebulaEngine/include/Renderer/Buffer/IndexBuffer/IndexBuffer.h NebulaEngine/include/Renderer/Buffer/Layout/BufferLayout.h NebulaEngine/include/Renderer/Buffer/Buffer.h NebulaEngine/include/Renderer/Manager/RendererManager.h NebulaEngine/include/Renderer/Api/RendererApi.h
-  NebulaEngine/include/Inputs/InputManager.h
 
+  # Logger
+  NebulaEngine/include/logger/log.h 
+
+  # Window
+  NebulaEngine/include/Window/Window.h
+
+  # Core
+  NebulaEngine/include/Core/Core.h NebulaEngine/include/Core/Application.h NebulaEngine/include/Core/EntryPoint.h
+  
+  # Events
+  NebulaEngine/include/Events/Event.h NebulaEngine/include/Events/KeyEvent.h NebulaEngine/include/Events/MouseEvent.h NebulaEngine/include/Events/ApplicationEvent.h
+  
+  # Platforms - Linux
+  NebulaEngine/include/Platforms/Linux/Linux.h
+  
+  # Platforms - Windows
+  NebulaEngine/include/Platforms/Windows/WindowsWindow.h NebulaEngine/include/Platforms/Windows/WindowsInput.h
+  
+  # Platforms - OpenGL
+  NebulaEngine/include/Platforms/OpenGL/Buffer/IndexBuffer/OpenGLIndexBuffer.h NebulaEngine/include/Platforms/OpenGL/Buffer/VertexBuffer/OpenGLVertexBuffer.h NebulaEngine/include/Platforms/OpenGL/Context/OpenGLContext.h NebulaEngine/include/Platforms/OpenGL/VertexArray/OpenGLVertexArray.h NebulaEngine/include/Platforms/OpenGL/Renderer/OpenGLRendererAPI.h
+  
+  # Renderer - Graphics
+  NebulaEngine/include/Renderer/Graphics/GraphicsContext.h NebulaEngine/include/Renderer/Render/Render.h NebulaEngine/include/Renderer/Render/Shader/Shader.h NebulaEngine/include/Renderer/Render/Texture/Texture.h NebulaEngine/include/Renderer/VertexArray/VertexArray.h NebulaEngine/include/Renderer/Buffer/VertexBuffer/VertexBuffer.h NebulaEngine/include/Renderer/Buffer/IndexBuffer/IndexBuffer.h NebulaEngine/include/Renderer/Buffer/Layout/BufferLayout.h NebulaEngine/include/Renderer/Buffer/Buffer.h NebulaEngine/include/Renderer/Manager/RendererManager.h NebulaEngine/include/Renderer/Api/RendererApi.h
+  
+  # Inputs
+  NebulaEngine/include/Inputs/InputManager.h
 )
 
 # Add source to this project's executable.
+
+# Add the Game executable
 add_executable (Game "Game/Game.cpp")
+
+# Add the Tests executable
 add_executable (NebulaTests "Tests/Units/RunTests.cpp")
+
+# Add the source files
 target_sources(Nebula
   PUBLIC
   FILE_SET HEADERS
@@ -66,9 +105,10 @@ target_sources(Nebula
 )
 
 # Link libraries
-target_link_libraries(Nebula PRIVATE fmt::fmt spdlog::spdlog glad::glad glfw)
+target_link_libraries(Nebula PRIVATE glm::glm fmt::fmt spdlog::spdlog glad::glad glfw GLEW::glew)
 target_link_libraries(Game PRIVATE Nebula)
 target_link_libraries(NebulaTests PRIVATE Nebula fmt::fmt GTest::gtest_main)
+
 
 # Add tests to CTest
 enable_testing()

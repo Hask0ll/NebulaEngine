@@ -5,7 +5,7 @@
 
 namespace Nebula
 {
-	class NEBULA VertexBuffer : public BufferLayout
+	class VertexBuffer : public BufferLayout
 	{
 	public:
 		virtual ~VertexBuffer() = default;

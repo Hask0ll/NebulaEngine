@@ -5,7 +5,7 @@
 
 namespace Nebula
 {
-	class NEBULA IndexBuffer : public BufferLayout
+	class IndexBuffer : public BufferLayout
 	{
 	public:
 		virtual ~IndexBuffer() = default;

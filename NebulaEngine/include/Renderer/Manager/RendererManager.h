@@ -1,14 +1,11 @@
 #pragma once
-
-#include <glm/fwd.hpp>
-#include <glm/glm.hpp>
-
-#include "Renderer/Manager/RendererAPI.h"
+#include "Renderer/Api/RendererApi.h"
 #include "Renderer/Render/Shader/Shader.h"
+#include <glm/glm.hpp>
 
 namespace Nebula
 {
-	class NEBULA_API Renderer
+	class NEBULA RendererManager
 	{
 	public:
 		static void BeginScene();
@@ -16,6 +13,6 @@ namespace Nebula
 
 		static void Submit(const std::shared_ptr<VertexArray>& vertexArray, const std::shared_ptr<Shader>& shader, const glm::mat4& transform = glm::mat4(1.0f));
 
-		static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
+		static RendererApi::API GetAPI() { return RendererApi::GetAPI(); }
 	};
 }

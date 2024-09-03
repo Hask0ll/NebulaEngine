@@ -1,12 +1,13 @@
 #pragma once
 
-#include "Renderer/VertexArray/VertexArray.h"
 
+#include "Renderer/VertexArray/VertexArray.h"
 #include <cstdint>
+
 
 namespace Nebula
 {
-	class NEBULA RendererApi
+	class RendererApi
 	{
 	public:
 		enum class API

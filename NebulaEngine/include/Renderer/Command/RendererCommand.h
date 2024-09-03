@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Renderer/Manager/RendererApi.h"
+#include "Renderer/Api/RendererApi.h"
 
 namespace Nebula
 {
-	class NEBULA_API RenderCommand
+	class NEBULA RenderCommand
 	{
 	public:
 		//static void Init()
@@ -19,17 +19,17 @@ namespace Nebula
 
 		static void SetClearColor(const glm::vec4& color)
 		{
-			s_RendererAPI->SetClearColor(color);
+			s_RendererApi->SetClearColor(color);
 		}
 
 		static void Clear()
 		{
-			s_RendererAPI->Clear();
+			s_RendererApi->Clear();
 		}
 
 		static void DrawIndexed(const std::shared_ptr<VertexArray>& vertexArray, uint32_t indexCount = 0)
 		{
-			s_RendererAPI->DrawIndexed(vertexArray, indexCount);
+			s_RendererApi->DrawIndexed(vertexArray, indexCount);
 		}
 
 		//static void DrawLines(const std::shared_ptr<VertexArray>& vertexArray, uint32_t vertexCount)
@@ -42,6 +42,6 @@ namespace Nebula
 		//	s_RendererAPI->SetLineWidth(width);
 		//}
 	private:
-		static RendererAPI* s_RendererAPI;
+		static RendererApi* s_RendererApi;
 	};
 }

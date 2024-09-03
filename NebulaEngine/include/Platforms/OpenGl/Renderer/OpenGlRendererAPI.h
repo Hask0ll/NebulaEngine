@@ -2,12 +2,11 @@
 
 #include <memory>
 
-#include "glm/fwd.hpp"
-#include "Renderer/Manager/RendererApi.h"
+#include "Renderer/Api/RendererApi.h"
 
 namespace Nebula
 {
-	class OpenGLRendererApi : public RendererApi
+	class NEBULA OpenGLRendererApi : public RendererApi
 	{
 	public:
 		//virtual void Init() override;

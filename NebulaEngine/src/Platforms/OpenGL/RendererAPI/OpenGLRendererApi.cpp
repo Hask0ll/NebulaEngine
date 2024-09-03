@@ -1,10 +1,11 @@
-#include <memory>
-
 #include "Platforms/OpenGL/Renderer/OpenGLRendererApi.h"
 #include "Renderer/VertexArray/VertexArray.h"
 
 #include <glad/glad.h>
 #include <glm/fwd.hpp>
+#include <glm/vec4.hpp>
+
+#include <memory>
 
 namespace Nebula
 {
@@ -22,5 +23,4 @@ namespace Nebula
 	{
 		glDrawElements(GL_TRIANGLES, vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 	}
-
 }

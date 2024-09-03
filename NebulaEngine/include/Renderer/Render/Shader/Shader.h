@@ -1,13 +1,12 @@
 #pragma once
 
 #include <string>
-#include <glm/fwd.hpp>
-
-#include "Core.h"
+#include "Core/Core.h"
+#include <glm/glm.hpp>
 
 namespace Nebula
 {
-	class NEBULA_API Shader
+	class NEBULA Shader
 	{
 	public:
 		Shader(const std::string& vertexSrc, const std::string& fragmentSrc);

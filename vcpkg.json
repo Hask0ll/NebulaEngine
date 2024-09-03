@@ -1,4 +1,11 @@
 {
+  "name": "nebula",
+  "description": "Welcome to Nebula Engine",
+  "version-string": "0.1.0",
+  "maintainers": [
+    "https://github.com/Hask0ll"
+  ],
+  "supports": "windows",
   "dependencies": [
     "fmt",
     "glad",

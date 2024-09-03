@@ -3,7 +3,6 @@
 #include <cstdint>
 
 #include "Core/Core.h"
-#include <glm/fwd.hpp>
 
 namespace Nebula
 {
