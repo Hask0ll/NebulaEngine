@@ -1,5 +1,6 @@
 #pragma once
 #include "spdlog/spdlog.h"
+#include "Core/Core.h"
 
 #include <memory>
 
@@ -9,7 +10,7 @@ namespace Nebula
 	 * \brief The Log class provides static methods for initializing and shutting down logging,
 	 * and for accessing core and client loggers.
 	 */
-	class Log
+	class NEBULA Log
 	{
 	public:
 		/**

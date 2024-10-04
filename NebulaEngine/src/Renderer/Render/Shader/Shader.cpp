@@ -1,6 +1,5 @@
 #include "Renderer/Render/Shader/Shader.h"
 
-#include <iostream>
 #include <vector>
 #include <glad/glad.h>
 #include <glm/gtc/type_ptr.hpp>

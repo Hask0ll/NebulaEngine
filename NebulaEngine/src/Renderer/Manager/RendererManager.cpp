@@ -1,33 +1,31 @@
-#include "Renderer/Manager/RendererManager.h"
 
-#include <complex>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-
+#include "Renderer/Manager/RendererManager.h"
 #include "Core/Application.h"
+#include "Renderer/Command/RendererCommand.h"
 #include "Renderer/Render/Shader/Shader.h"
-#include "Renderer/Command/RenderCommand.h"
 
 namespace Nebula
 {
-	void Renderer::BeginScene()
+	void RendererManager::BeginScene()
 	{
 
 	}
 
-	void Renderer::EndScene()
+	void RendererManager::EndScene()
 	{
 
 	}
 
-	void Renderer::Submit(const std::shared_ptr<VertexArray>& vertexArray, const std::shared_ptr<Shader>& shader, const glm::mat4& transform)
+	void RendererManager::Submit(const std::shared_ptr<VertexArray>& vertexArray, const std::shared_ptr<Shader>& shader, const glm::mat4& transform)
 	{
-		const float screenWidth = Application::Get().GetWindow()->GetWidth();
-		const float screenHeight = Application::Get().GetWindow()->GetHeight();
+		const unsigned int screenWidth = Application::Get().GetWindow().GetWidth();
+		const unsigned int screenHeight = Application::Get().GetWindow().GetHeight();
 
 		// Orthographic projection matrix
-		glm::mat4 projectionMatrix = glm::ortho(0.0f, screenWidth, screenHeight, 0.0f, -1.0f, 1.0f);
+		glm::highp_mat4 projectionMatrix = glm::ortho(0.0f, static_cast<float>(screenWidth), 0.0f, static_cast<float>(screenHeight), -1.0f, 1.0f);
 		glm::mat4 viewMatrix = glm::mat4(1.0f);
 		glm::mat4 tmp = projectionMatrix * viewMatrix * transform;
 		shader->Bind();

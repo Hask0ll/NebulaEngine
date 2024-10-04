@@ -3,6 +3,7 @@
 
 #include "Renderer/VertexArray/VertexArray.h"
 #include <cstdint>
+#include <glm/glm.hpp>
 
 
 namespace Nebula
@@ -29,6 +30,6 @@ namespace Nebula
 
 		static API GetAPI() { return s_API; }
 	private:
-		static API s_API;
+		inline static API s_API;
 	};
 }

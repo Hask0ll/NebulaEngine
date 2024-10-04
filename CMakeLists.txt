@@ -30,26 +30,38 @@ include_directories(${GLM_INCLUDE_DIRS})
 
 # Add Shared Library
 add_library(Nebula 
-	SHARED
+    SHARED
 
-	# Core
-	NebulaEngine/src/Core/Application.cpp
+    # Core
+    NebulaEngine/src/Core/Application.cpp
 
-	# Logger
-	NebulaEngine/src/Logger/Log.cpp 
+    # Logger
+    NebulaEngine/src/Logger/Log.cpp 
 
-	# Platform - Windows
-	NebulaEngine/src/Platforms/Windows/WindowsWindow.cpp NebulaEngine/src/Platforms/Windows/WindowsInput.cpp
-	
-	# Platform - OpenGL
-	NebulaEngine/src/Platforms/OpenGL/Context/OpenGLContext.cpp NebulaEngine/src/Platforms/OpenGL/IndexBuffer/OpenGLIndexBuffer.cpp NebulaEngine/src/Platforms/OpenGL/RendererApi/OpenGLRendererApi.cpp NebulaEngine/src/Platforms/OpenGL/VertexArray/OpenGLVertexArray.cpp NebulaEngine/src/Platforms/OpenGL/VertexBuffer/OpenGLVertexBuffer.cpp
-	
-	# Renderer - Graphics
-	NebulaEngine/src/Renderer/Graphics/GraphicsContext.cpp
+    # Platform - Windows
+    NebulaEngine/src/Platforms/Windows/WindowsWindow.cpp NebulaEngine/src/Platforms/Windows/WindowsInput.cpp
+    
+    # Platform - OpenGL
+    NebulaEngine/src/Platforms/OpenGL/Context/OpenGLContext.cpp NebulaEngine/src/Platforms/OpenGL/IndexBuffer/OpenGLIndexBuffer.cpp NebulaEngine/src/Platforms/OpenGL/RendererApi/OpenGLRendererApi.cpp NebulaEngine/src/Platforms/OpenGL/VertexArray/OpenGLVertexArray.cpp NebulaEngine/src/Platforms/OpenGL/VertexBuffer/OpenGLVertexBuffer.cpp
+    
+    # Renderer - Graphics
+    NebulaEngine/src/Renderer/Graphics/GraphicsContext.cpp
 
-	# Inputs
-	NebulaEngine/src/Inputs/InputManager.cpp
-	)
+    # Renderer - Manager
+    NebulaEngine/src/Renderer/Manager/RendererManager.cpp
+
+    # Renderer - Command
+    NebulaEngine/src/Renderer/Command/RendererCommand.cpp
+
+    # Renderer - Render - Shader
+    NebulaEngine/src/Renderer/Render/Shader/Shader.cpp
+
+    # Inputs
+    NebulaEngine/src/Inputs/InputManager.cpp
+
+    # Layer 
+    NebulaEngine/src/Layer/Layer.cpp NebulaEngine/src/Layer/LayerStack.cpp
+    )
 target_compile_definitions(Nebula PRIVATE NEBULA_EXPORTS)
 
 target_sources(Nebula
@@ -84,8 +96,23 @@ target_sources(Nebula
   # Renderer - Graphics
   NebulaEngine/include/Renderer/Graphics/GraphicsContext.h NebulaEngine/include/Renderer/Render/Render.h NebulaEngine/include/Renderer/Render/Shader/Shader.h NebulaEngine/include/Renderer/Render/Texture/Texture.h NebulaEngine/include/Renderer/VertexArray/VertexArray.h NebulaEngine/include/Renderer/Buffer/VertexBuffer/VertexBuffer.h NebulaEngine/include/Renderer/Buffer/IndexBuffer/IndexBuffer.h NebulaEngine/include/Renderer/Buffer/Layout/BufferLayout.h NebulaEngine/include/Renderer/Buffer/Buffer.h NebulaEngine/include/Renderer/Manager/RendererManager.h NebulaEngine/include/Renderer/Api/RendererApi.h
   
+  # Renderer - Manager
+  NebulaEngine/include/Renderer/Manager/RendererManager.h
+
+  # Renderer - Command
+  NebulaEngine/include/Renderer/Command/RendererCommand.h
+
+  # Renderer - Render - Shader
+  NebulaEngine/include/Renderer/Render/Shader/Shader.h
+
   # Inputs
   NebulaEngine/include/Inputs/InputManager.h
+
+  # Layer
+  NebulaEngine/include/Layer/Layer.h NebulaEngine/include/Layer/LayerStack.h
+
+  # TimeStep
+  NebulaEngine/include/TimeStep/TimeStep.h
 )
 
 # Add source to this project's executable.
@@ -105,10 +132,9 @@ target_sources(Nebula
 )
 
 # Link libraries
-target_link_libraries(Nebula PRIVATE glm::glm fmt::fmt spdlog::spdlog glad::glad glfw GLEW::glew)
+target_link_libraries(Nebula PUBLIC glm::glm fmt::fmt spdlog::spdlog glad::glad glfw GLEW::glew)
 target_link_libraries(Game PRIVATE Nebula)
 target_link_libraries(NebulaTests PRIVATE Nebula fmt::fmt GTest::gtest_main)
-
 
 # Add tests to CTest
 enable_testing()

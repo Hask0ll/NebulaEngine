@@ -1,11 +1,15 @@
 #pragma once
 
-#include "Core/Core.h"      // Core includes (project-specific)
-#include <string>           // Standard library includes
-#include <functional>       // Standard library includes
+#include <format>
 
-namespace Nebula {
+#include "Core/Core.h"
+#include "fmt/core.h"
+#include <string>
+#include <ostream>
+#include <functional>
 
+namespace Nebula
+{
 	/**
 	 * \brief Enum class representing different types of events.
 	 */
@@ -41,22 +45,23 @@ namespace Nebula {
 									virtual EventType GetEventType() const override { return GetStaticType(); }\
 									virtual const char* GetName() const override { return #type; }
 
-	 /**
-	  * \brief Macro to define the category flags for an event.
-	  *
-	  * This macro defines a virtual function that returns the category flags for the event.
-	  */
+	/**
+	 * \brief Macro to define the category flags for an event.
+	 *
+	 * This macro defines a virtual function that returns the category flags for the event.
+	 */
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
-	  /**
-	   * \brief Base class for all events in the engine.
-	   *
-	   * This class provides the interface for all events. It includes methods for getting the event type,
-	   * event name, category flags, and for checking if the event is handled.
-	   */
+	/**
+	 * \brief Base class for all events in the engine.
+	 *
+	 * This class provides the interface for all events. It includes methods for getting the event type,
+	 * event name, category flags, and for checking if the event is handled.
+	 */
 	class NEBULA Event
 	{
 		friend class EventDispatcher;
+
 	public:
 		/**
 		 * \brief Get the type of the event.
@@ -109,7 +114,7 @@ namespace Nebula {
 	 */
 	class EventDispatcher
 	{
-		template<typename T>
+		template <typename T>
 		using EventFn = std::function<bool(T&)>;
 
 	public:
@@ -118,7 +123,9 @@ namespace Nebula {
 		 * \param event The event to be dispatched.
 		 */
 		EventDispatcher(Event& event)
-			: m_Event(event) {}
+			: m_Event(event)
+		{
+		}
 
 		/**
 		 * \brief Dispatch the event if it matches the specified type.
@@ -129,7 +136,7 @@ namespace Nebula {
 		 * \param func The function to handle the event.
 		 * \return true if the event was dispatched and handled, false otherwise.
 		 */
-		template<typename T>
+		template <typename T>
 		bool Dispatch(EventFn<T> func)
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
@@ -158,3 +165,15 @@ namespace Nebula {
 		return os << e.ToString();
 	}
 }
+
+template <>
+struct fmt::formatter<Nebula::Event>
+{
+	constexpr auto parse(fmt::format_parse_context& ctx) { return ctx.begin(); }
+
+	template <typename FormatContext>
+	auto format(const Nebula::Event& e, FormatContext& ctx)
+	{
+		return fmt::format_to(ctx.out(), "{}", e.ToString());
+	}
+};

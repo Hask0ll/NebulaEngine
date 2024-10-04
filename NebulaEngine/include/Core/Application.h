@@ -3,6 +3,8 @@
 #include "Core/Core.h"
 #include "Events/ApplicationEvent.h"
 #include "Events/Event.h"
+#include "Layer/Layer.h"
+#include "Layer/LayerStack.h"
 #include "Window/Window.h"
 
 /**
@@ -18,9 +20,9 @@ namespace Nebula
 	 * \brief Application class
 	 *
 	 * The main class responsible for managing the application's lifecycle, handling events,
-	 * and managing the main window.
+	 * and managing the main window. 
 	 */
-	class Application
+	class NEBULA Application
 	{
 	public:
 		/**
@@ -78,7 +80,7 @@ namespace Nebula
 		 *
 		 * \return Reference to the application instance.
 		 */
-		Application& Get() { return *s_Instance; }
+		static Application& Get() { return *s_Instance; }
 
 		/**
 		 * \brief Get the window instance.
@@ -89,7 +91,6 @@ namespace Nebula
 		 */
 		Window& GetWindow() { return *m_Window; }
 
-		// Documentation for commented-out methods
 		/**
 		 * \brief Push a layer to the layer stack.
 		 *
@@ -97,7 +98,7 @@ namespace Nebula
 		 *
 		 * \param layer The layer to be pushed onto the stack.
 		 */
-		 //void PushLayer(Layer* layer);
+		 void PushLayer(Layer* layer);
 
 		 /**
 		  * \brief Push an overlay to the layer stack.
@@ -106,7 +107,7 @@ namespace Nebula
 		  *
 		  * \param overlay The overlay to be pushed onto the stack.
 		  */
-		  //void PushOverlay(Layer* overlay);
+		  void PushOverlay(Layer* overlay);
 
 		  /**
 		   * \brief Start all game objects.
@@ -136,19 +137,19 @@ namespace Nebula
 			 */
 			 //static void DrawGameObjects(NEBULA::ECS::GameObject* root);
 
-			 /**
-			  * \brief Stop the application.
-			  *
-			  * This function stops the application's main loop.
-			  */
+		 /**
+		  * \brief Stop the application.
+		  *
+		  * This function stops the application's main loop.
+		  */
 		void Stop() { m_Running = false; }
 
 	private:
 
 		std::shared_ptr<Window> m_Window; /**< The main window of the application. */
 		bool m_Running = true;            /**< Flag indicating whether the application is running. */
-		Application* s_Instance;          /**< Pointer to the application instance (singleton pattern). */
-		//LayerStack m_LayerStack;        /**< Stack of layers managed by the application. */
+		inline static Application* s_Instance;          /**< Pointer to the application instance (singleton pattern). */
+		LayerStack m_LayerStack;        /**< Stack of layers managed by the application. */
 		float m_LastFrameTime = 0.0f;     /**< Time of the last frame, used for time management. */
 	};
 

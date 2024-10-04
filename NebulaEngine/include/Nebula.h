@@ -26,6 +26,10 @@
 #include "Renderer/Render/Texture/Texture.h"
 #include "Renderer/Render/Render.h"
 
+#include "Layer/Layer.h"
+#include "Layer/LayerStack.h"
+#include "TimeStep/TimeStep.h"
+
 // ----- Entry Point -----
 
 #include "Core/EntryPoint.h"

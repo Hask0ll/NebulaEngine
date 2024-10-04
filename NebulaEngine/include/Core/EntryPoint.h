@@ -22,6 +22,7 @@ extern Nebula::Application* Nebula::CreateApplication();
  */
 int main(int ac, char** av)
 {
+	Nebula::Log::Init();
 	auto app = Nebula::CreateApplication();
 	app->Run();
 	delete app;
