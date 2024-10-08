@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Core/Core.h"
 #include "Renderer/Buffer/Layout/BufferLayout.h"
 
 namespace Nebula

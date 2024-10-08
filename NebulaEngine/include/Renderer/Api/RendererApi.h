@@ -1,35 +1,62 @@
 #pragma once
 
-
 #include "Renderer/VertexArray/VertexArray.h"
 #include <cstdint>
 #include <glm/glm.hpp>
 
-
 namespace Nebula
 {
-	class RendererApi
-	{
-	public:
-		enum class API
-		{
-			None = 0, OpenGl = 1
-		};
-	public:
-		virtual ~RendererApi() = default;
+    /**
+     * @class RendererApi
+     * @brief Abstract base class defining the interface for renderer APIs in the Nebula engine.
+     *
+     * This class provides a common interface for different rendering APIs,
+     * allowing for easy switching between rendering backends.
+     */
+    class RendererApi
+    {
+    public:
+        /**
+         * @enum API
+         * @brief Enumeration of supported rendering APIs.
+         */
+        enum class API
+        {
+            None = 0,  /**< No API selected */
+            OpenGl = 1 /**< OpenGL API */
+        };
 
-		//virtual void Init() = 0;
-		//virtual void SetViewport(uint32_t x, uint32_t y, uint32_t width, uint32_t height) = 0;
-		virtual void SetClearColor(const glm::vec4& color) = 0;
-		virtual void Clear() = 0;
+    public:
+        /**
+         * @brief Virtual destructor to ensure proper cleanup of derived classes.
+         */
+        virtual ~RendererApi() = default;
 
-		virtual void DrawIndexed(const std::shared_ptr<VertexArray>& vertexArray, uint32_t indexCount = 0) = 0;
-		//virtual void DrawLines(const std::shared_ptr<VertexArray>& vertexArray, uint32_t vertexCount) = 0;
+        /**
+         * @brief Set the clear color for the rendering context.
+         * @param color The color to set as clear color.
+         */
+        virtual void SetClearColor(const glm::vec4& color) = 0;
 
-		//virtual void SetLineWidth(float width) = 0;
+        /**
+         * @brief Clear the current rendering context.
+         */
+        virtual void Clear() = 0;
 
-		static API GetAPI() { return s_API; }
-	private:
-		inline static API s_API;
-	};
+        /**
+         * @brief Draw indexed geometry.
+         * @param vertexArray The vertex array object containing the geometry data.
+         * @param indexCount The number of indices to draw. If 0, all indices will be drawn.
+         */
+        virtual void DrawIndexed(const std::shared_ptr<VertexArray>& vertexArray, uint32_t indexCount = 0) = 0;
+
+        /**
+         * @brief Get the currently active rendering API.
+         * @return API The currently active rendering API.
+         */
+        static API GetAPI() { return s_API; }
+
+    private:
+        inline static API s_API; /**< The currently active rendering API. */
+    };
 }

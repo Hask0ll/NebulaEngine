@@ -25,6 +25,7 @@ find_package(glad CONFIG REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)
 find_package(glew CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
+find_package(imgui CONFIG REQUIRED)
 
 include_directories(${GLM_INCLUDE_DIRS})
 
@@ -55,6 +56,24 @@ add_library(Nebula
 
     # Renderer - Render - Shader
     NebulaEngine/src/Renderer/Render/Shader/Shader.cpp
+
+    # Renderer - Buffer - VertexBuffer
+    NebulaEngine/src/Renderer/Buffer/VertexBuffer/VertexBuffer.cpp
+
+    # Renderer - Buffer - InderBuffer
+    NebulaEngine/src/Renderer/Buffer/IndexBuffer/IndexBuffer.cpp
+
+    # Renderer - Buffer
+    NebulaEngine/src/Renderer/Buffer/Buffer.cpp
+
+    # Renderer - Shape - Rectangle
+    NebulaEngine/src/Renderer/Shape/Rectangle/RectangleShape.cpp
+
+    # Renderer - VertexArray
+    NebulaEngine/src/Renderer/VertexArray/VertexArray.cpp
+
+    # Renderer - Render - Texture
+    NebulaEngine/src/Renderer/Render/Texture/Texture.cpp
 
     # Inputs
     NebulaEngine/src/Inputs/InputManager.cpp
@@ -94,7 +113,7 @@ target_sources(Nebula
   NebulaEngine/include/Platforms/OpenGL/Buffer/IndexBuffer/OpenGLIndexBuffer.h NebulaEngine/include/Platforms/OpenGL/Buffer/VertexBuffer/OpenGLVertexBuffer.h NebulaEngine/include/Platforms/OpenGL/Context/OpenGLContext.h NebulaEngine/include/Platforms/OpenGL/VertexArray/OpenGLVertexArray.h NebulaEngine/include/Platforms/OpenGL/Renderer/OpenGLRendererAPI.h
   
   # Renderer - Graphics
-  NebulaEngine/include/Renderer/Graphics/GraphicsContext.h NebulaEngine/include/Renderer/Render/Render.h NebulaEngine/include/Renderer/Render/Shader/Shader.h NebulaEngine/include/Renderer/Render/Texture/Texture.h NebulaEngine/include/Renderer/VertexArray/VertexArray.h NebulaEngine/include/Renderer/Buffer/VertexBuffer/VertexBuffer.h NebulaEngine/include/Renderer/Buffer/IndexBuffer/IndexBuffer.h NebulaEngine/include/Renderer/Buffer/Layout/BufferLayout.h NebulaEngine/include/Renderer/Buffer/Buffer.h NebulaEngine/include/Renderer/Manager/RendererManager.h NebulaEngine/include/Renderer/Api/RendererApi.h
+  NebulaEngine/include/Renderer/Graphics/GraphicsContext.h NebulaEngine/include/Renderer/Render/Render.h NebulaEngine/include/Renderer/Render/Shader/Shader.h NebulaEngine/include/Renderer/Render/Texture/Texture.h NebulaEngine/include/Renderer/Buffer/Layout/BufferLayout.h NebulaEngine/include/Renderer/Manager/RendererManager.h NebulaEngine/include/Renderer/Api/RendererApi.h
   
   # Renderer - Manager
   NebulaEngine/include/Renderer/Manager/RendererManager.h
@@ -104,6 +123,24 @@ target_sources(Nebula
 
   # Renderer - Render - Shader
   NebulaEngine/include/Renderer/Render/Shader/Shader.h
+
+  # Renderer - Render - Texture
+  NebulaEngine/include/Renderer/Render/Texture/Texture.h
+
+  # Renderer - Buffer - VertexBuffer
+  NebulaEngine/include/Renderer/Buffer/VertexBuffer/VertexBuffer.h
+
+  # Renderer - Buffer - InderBuffer
+  NebulaEngine/include/Renderer/Buffer/IndexBuffer/IndexBuffer.h
+
+  # Renderer - Buffer
+  NebulaEngine/include/Renderer/Buffer/Buffer.h
+
+  # Renderer - Shape - Rectangle
+  NebulaEngine/include/Renderer/Shape/Rectangle/RectangleShape.h
+
+  # Renderer - VertexArray
+  NebulaEngine/include/Renderer/VertexArray/VertexArray.h
 
   # Inputs
   NebulaEngine/include/Inputs/InputManager.h
@@ -132,7 +169,7 @@ target_sources(Nebula
 )
 
 # Link libraries
-target_link_libraries(Nebula PUBLIC glm::glm fmt::fmt spdlog::spdlog glad::glad glfw GLEW::glew)
+target_link_libraries(Nebula PUBLIC glm::glm fmt::fmt spdlog::spdlog glad::glad glfw GLEW::glew imgui::imgui)
 target_link_libraries(Game PRIVATE Nebula)
 target_link_libraries(NebulaTests PRIVATE Nebula fmt::fmt GTest::gtest_main)
 

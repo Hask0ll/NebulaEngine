@@ -53,6 +53,8 @@ namespace Nebula
 			// TODO: glfwTerminate on system shutdown
 			int succes = glfwInit();
 
+			NB_CORE_INFO("Initializing GLFW {0}", succes);
+
 			glfwSetErrorCallback(GLFWErrorCallBack);
 
 			glfwWindowHint(GLFW_CLIENT_API, GLFW_OPENGL_API);

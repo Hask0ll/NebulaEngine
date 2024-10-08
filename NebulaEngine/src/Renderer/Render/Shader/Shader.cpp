@@ -35,7 +35,7 @@ namespace Nebula
 			// We don't need the shader anymore.
 			glDeleteShader(vertexShader);
 
-			// Logger Error, "Vertex shader compilation failure ! vertexShader");
+			NB_CORE_ERROR("{0}: Vertex shader compilation failure !", vertexShader);
 
 			return;
 		}
@@ -66,7 +66,7 @@ namespace Nebula
 			// Either of them. Don't leak shaders.
 			glDeleteShader(vertexShader);
 
-			// Logger Error, "Vertex shader compilation failure ! fragmentShader");
+			NB_CORE_ERROR("{0}: Fragment shader compilation failure !", fragmentShader);
 
 			return;
 		}
@@ -102,7 +102,8 @@ namespace Nebula
 			glDeleteShader(vertexShader);
 			glDeleteShader(fragmentShader);
 
-			// Logger Error, "Vertex shader compilation failure ! program");
+			NB_CORE_ERROR("{0}: Program compilation failure !", program);
+
 			return;
 		}
 

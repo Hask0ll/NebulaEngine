@@ -7,7 +7,7 @@ namespace Nebula
 {
 	VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size)
 	{
-		switch (Renderer::GetAPI())
+		switch (RendererManager::GetAPI())
 		{
 		case RendererApi::API::None:		return nullptr;
 		case RendererApi::API::OpenGl:	return new OpenGLVertexBuffer(vertices, size);

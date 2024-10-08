@@ -56,7 +56,7 @@ namespace Nebula
 				layout.GetStride(), (const void*)element.Offset);
 			index++;
 		}
-		m_VertexBuffer.push_back(vertexBuffer);
+		m_VertexBuffers.push_back(vertexBuffer);
 	}
 
 	void OpenGLVertexArray::SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer)

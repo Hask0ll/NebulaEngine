@@ -1,8 +1,13 @@
 #include "Core/Application.h"
 
 #include "Events/ApplicationEvent.h"
+#include "GL/glew.h"
 #include "GLFW/glfw3.h"
+#include "Inputs/InputManager.h"
 #include "Logger/Log.h"
+#include "Renderer/Buffer/IndexBuffer/IndexBuffer.h"
+#include "Renderer/Buffer/VertexBuffer/VertexBuffer.h"
+#include "Renderer/Render/Shader/Shader.h"
 #include "Window/Window.h"
 #include "TimeStep/TimeStep.h"
 
@@ -73,6 +78,7 @@ namespace Nebula
 			m_LastFrameTime = time;
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate(timestep);
+
 			m_Window->OnUpdate();
 		}
 		glfwDestroyWindow(window);

@@ -9,28 +9,26 @@ namespace Nebula
 
 	bool WindowsInput::IsKeyPressedImpl(int keycode)
 	{
-		//auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().NativeWindow());
-		//auto state = glfwGetKey(window, keycode);
-		//return state == GLFW_PRESS || state == GLFW_REPEAT;
-		return true;
+		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().NativeWindow());
+		auto state = glfwGetKey(window, keycode);
+		return state == GLFW_PRESS || state == GLFW_REPEAT;
 	}
 
 	bool WindowsInput::IsMouseButtonPressedImpl(int button)
 	{
-		/*auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().NativeWindow());
+		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().NativeWindow());
 		auto state = glfwGetMouseButton(window, button);
-		return state == GLFW_PRESS;*/
+		return state == GLFW_PRESS;
 		return true;
 	}
 
 	std::pair<float, float> WindowsInput::GetMousePositionImpl()
 	{
-		/*auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().NativeWindow());
+		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().NativeWindow());
 		double xpos, ypos;
 		glfwGetCursorPos(window, &xpos, &ypos);
 
-		return { (float)xpos, (float)ypos };*/
-		return { 0.0f, 0.0f };
+		return { (float)xpos, (float)ypos };
 	}
 
 	float WindowsInput::GetMouseXImpl()
@@ -44,6 +42,4 @@ namespace Nebula
 		auto [x, y] = GetMousePositionImpl();
 		return y;
 	}
-
-
 }

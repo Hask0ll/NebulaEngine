@@ -8,7 +8,7 @@ namespace Nebula
 {
 	VertexArray* VertexArray::Create()
 	{
-		switch (Renderer::GetAPI())
+		switch (RendererManager::GetAPI())
 		{
 		case RendererApi::API::None:		return nullptr;
 		case RendererApi::API::OpenGl:		return new OpenGLVertexArray();
