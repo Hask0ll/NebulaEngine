@@ -31,7 +31,7 @@ namespace Nebula
 		glCreateVertexArrays(1, &m_RendererID);
 	}
 
-	void OpenGLVertexArray::Bind() const
+	void OpenGLVertexArray::Bind() const 
 	{
 		glBindVertexArray(m_RendererID);
 	}
