@@ -1,5 +1,6 @@
 #include "Renderer/Shape/Rectangle/RectangleShape.h"
 
+#include "Renderer/Buffer/Buffer.h"
 #include "Renderer/Manager/RendererManager.h"
 
 namespace Nebula
@@ -39,12 +40,12 @@ namespace Nebula
 		m_shader.reset(new Nebula::Shader(vsSrc, fsSrc));
 	}
 
-	void RectangleShape::Render(glm::mat4 transform)
+	void RectangleShape::Render(const glm::mat4 transform) const
 	{
 		Nebula::RendererManager::Submit(m_squareVA, m_shader, transform);
 	}
 
-	void RectangleShape::SetColor(const float& r, const float& g, const float& b, const float& a)
+	void RectangleShape::SetColor(const float& r, const float& g, const float& b, const float& a) const
 	{
 		m_shader->Bind();
 		m_shader->UploadUniformFloat4("u_Color", r / 255, g / 255, b / 255, a / 255);

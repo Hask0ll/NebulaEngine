@@ -7,7 +7,13 @@
 #include "Logger/Log.h"
 #include "Renderer/Buffer/IndexBuffer/IndexBuffer.h"
 #include "Renderer/Buffer/VertexBuffer/VertexBuffer.h"
+#include "Platforms/OpenGL/VertexArray/OpenGLVertexArray.h"
+#include "Renderer/Api/RendererApi.h"
+#include "Renderer/Command/RendererCommand.h"
+#include "Renderer/Manager/RendererManager.h"
+#include "Renderer/Render/Render.h"
 #include "Renderer/Render/Shader/Shader.h"
+#include "Renderer/Shape/Rectangle/RectangleShape.h"
 #include "Window/Window.h"
 #include "TimeStep/TimeStep.h"
 
@@ -17,8 +23,6 @@ namespace Nebula
 	{
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
-
-		s_Instance = this;
 	}
 
 	Application::~Application()
@@ -62,7 +66,6 @@ namespace Nebula
 
 	void Application::Run()
 	{
-
 		NB_CORE_TRACE("Nebula Engine is Running !");
 		NB_CORE_TRACE("Initialyse Log.");
 		NB_CLIENT_INFO("Hello !");
@@ -75,6 +78,14 @@ namespace Nebula
 		{
 			float time = (float)glfwGetTime();
 			TimeStep timestep = time - m_LastFrameTime;
+
+			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
+			RenderCommand::Clear();
+
+			RendererManager::BeginScene();
+
+			RendererManager::EndScene();
+
 			m_LastFrameTime = time;
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate(timestep);

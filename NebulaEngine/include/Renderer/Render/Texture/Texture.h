@@ -12,9 +12,9 @@ class NEBULA Texture
 public:
 	Texture(const std::string& path);
 	~Texture();
-	void Bind();
-	const std::string& GetPath();
+	void Bind() const;
+	std::string& GetPath();
 private:
 	uint32_t m_rendererID;
-	const std::string m_path;
+	std::string m_path;
 };

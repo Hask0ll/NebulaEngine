@@ -14,12 +14,12 @@ Texture::~Texture()
 	glDeleteProgram(m_rendererID);
 }
 
-void Texture::Bind()
+void Texture::Bind() const
 {
 	glBindTexture(GL_TEXTURE_2D, m_rendererID);
 }
 
-const std::string& Texture::GetPath()
+std::string& Texture::GetPath()
 {
 	return m_path;
 }

@@ -7,6 +7,7 @@ namespace Nebula
 	class VertexBuffer : public BufferLayout
 	{
 	public:
+
 		virtual ~VertexBuffer() = default;
 
 		virtual void Bind() const = 0;

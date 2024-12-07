@@ -42,8 +42,17 @@ add_library(Nebula
     # Platform - Windows
     NebulaEngine/src/Platforms/Windows/WindowsWindow.cpp NebulaEngine/src/Platforms/Windows/WindowsInput.cpp
     
-    # Platform - OpenGL
-    NebulaEngine/src/Platforms/OpenGL/Context/OpenGLContext.cpp NebulaEngine/src/Platforms/OpenGL/IndexBuffer/OpenGLIndexBuffer.cpp NebulaEngine/src/Platforms/OpenGL/RendererApi/OpenGLRendererApi.cpp NebulaEngine/src/Platforms/OpenGL/VertexArray/OpenGLVertexArray.cpp NebulaEngine/src/Platforms/OpenGL/VertexBuffer/OpenGLVertexBuffer.cpp
+    # Platform - OpenGL - Context
+    NebulaEngine/src/Platforms/OpenGL/Context/OpenGLContext.cpp 
+    
+    # Platform - OpenGL - Buffer
+    NebulaEngine/src/Platforms/OpenGL/Buffer/IndexBuffer/OpenGLIndexBuffer.cpp NebulaEngine/src/Platforms/OpenGL/Buffer/VertexBuffer/OpenGLVertexBuffer.cpp
+    
+    # Platform - OpenGL - Renderer
+    NebulaEngine/src/Platforms/OpenGL/RendererApi/OpenGLRendererApi.cpp
+
+    # Platform - OpenGL - VertexArray
+    NebulaEngine/src/Platforms/OpenGL/VertexArray/OpenGLVertexArray.cpp
     
     # Renderer - Graphics
     NebulaEngine/src/Renderer/Graphics/GraphicsContext.cpp
@@ -69,8 +78,14 @@ add_library(Nebula
     # Renderer - Shape - Rectangle
     NebulaEngine/src/Renderer/Shape/Rectangle/RectangleShape.cpp
 
+    # Renderer - Shape - Triangle
+    NebulaEngine/src/Renderer/Shape/Triangle/TriangleShape.cpp
+
     # Renderer - VertexArray
     NebulaEngine/src/Renderer/VertexArray/VertexArray.cpp
+
+    # Renderer - Manager
+    NebulaEngine/src/Renderer/Manager/RendererManager.cpp
 
     # Renderer - Render - Texture
     NebulaEngine/src/Renderer/Render/Texture/Texture.cpp
@@ -89,6 +104,7 @@ target_sources(Nebula
   BASE_DIRS
   NebulaEngine/include
   FILES
+  # Nebula
   NebulaEngine/include/Nebula.h
 
   # Logger
@@ -113,10 +129,10 @@ target_sources(Nebula
   NebulaEngine/include/Platforms/OpenGL/Buffer/IndexBuffer/OpenGLIndexBuffer.h NebulaEngine/include/Platforms/OpenGL/Buffer/VertexBuffer/OpenGLVertexBuffer.h NebulaEngine/include/Platforms/OpenGL/Context/OpenGLContext.h NebulaEngine/include/Platforms/OpenGL/VertexArray/OpenGLVertexArray.h NebulaEngine/include/Platforms/OpenGL/Renderer/OpenGLRendererAPI.h
   
   # Renderer - Graphics
-  NebulaEngine/include/Renderer/Graphics/GraphicsContext.h NebulaEngine/include/Renderer/Render/Render.h NebulaEngine/include/Renderer/Render/Shader/Shader.h NebulaEngine/include/Renderer/Render/Texture/Texture.h NebulaEngine/include/Renderer/Buffer/Layout/BufferLayout.h NebulaEngine/include/Renderer/Manager/RendererManager.h NebulaEngine/include/Renderer/Api/RendererApi.h
+  NebulaEngine/include/Renderer/Graphics/GraphicsContext.h 
   
-  # Renderer - Manager
-  NebulaEngine/include/Renderer/Manager/RendererManager.h
+  # Renderer - Api
+  NebulaEngine/include/Renderer/Api/RendererApi.h
 
   # Renderer - Command
   NebulaEngine/include/Renderer/Command/RendererCommand.h
@@ -127,11 +143,17 @@ target_sources(Nebula
   # Renderer - Render - Texture
   NebulaEngine/include/Renderer/Render/Texture/Texture.h
 
+  # Renderer - Render
+  NebulaEngine/include/Renderer/Render/Render.h 
+
   # Renderer - Buffer - VertexBuffer
   NebulaEngine/include/Renderer/Buffer/VertexBuffer/VertexBuffer.h
 
   # Renderer - Buffer - InderBuffer
   NebulaEngine/include/Renderer/Buffer/IndexBuffer/IndexBuffer.h
+
+  # Renderer - Buffer - Layout
+  NebulaEngine/include/Renderer/Buffer/Layout/BufferLayout.h
 
   # Renderer - Buffer
   NebulaEngine/include/Renderer/Buffer/Buffer.h
@@ -139,8 +161,14 @@ target_sources(Nebula
   # Renderer - Shape - Rectangle
   NebulaEngine/include/Renderer/Shape/Rectangle/RectangleShape.h
 
+  # Renderer - Shape - Triangle
+  NebulaEngine/include/Renderer/Shape/Triangle/TriangleShape.h
+
   # Renderer - VertexArray
   NebulaEngine/include/Renderer/VertexArray/VertexArray.h
+
+  # Renderer - Manager
+  NebulaEngine/include/Renderer/Manager/RendererManager.h
 
   # Inputs
   NebulaEngine/include/Inputs/InputManager.h

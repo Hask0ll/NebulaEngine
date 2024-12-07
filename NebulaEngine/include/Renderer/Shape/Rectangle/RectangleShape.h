@@ -18,7 +18,7 @@ namespace Nebula
 		 * \brief Render Shape with specified transform
 		 * \param transform transform of shape
 		 */
-		void Render(glm::mat4 transform);
+		void Render(const glm::mat4 transform) const;
 
 		/**
 		 * \brief Set color of current rectangle
@@ -27,7 +27,7 @@ namespace Nebula
 		 * \param b Blue
 		 * \param a Alpha
 		 */
-		void SetColor(const float& r, const float& g, const float& b, const float& a);
+		void SetColor(const float& r, const float& g, const float& b, const float& a) const;
 	private:
 		uint32_t m_squareI[6] = { 0, 1, 2, 2, 3, 0 };
 		float m_vertices[3 * 4] = {

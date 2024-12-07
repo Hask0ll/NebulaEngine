@@ -1,5 +1,6 @@
 #include "Nebula.h"
 #include "Logger/Log.h"
+#include "Renderer/Shape/Rectangle/RectangleShape.h"
 
 class ExampleLayer : public Nebula::Layer
 {

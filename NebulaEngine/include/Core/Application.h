@@ -5,6 +5,9 @@
 #include "Events/Event.h"
 #include "Layer/Layer.h"
 #include "Layer/LayerStack.h"
+#include "Renderer/Buffer/IndexBuffer/IndexBuffer.h"
+#include "Renderer/Buffer/VertexBuffer/VertexBuffer.h"
+#include "Renderer/Render/Shader/Shader.h"
 #include "Window/Window.h"
 
 /**

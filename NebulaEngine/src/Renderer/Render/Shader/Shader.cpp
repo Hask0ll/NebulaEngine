@@ -16,7 +16,7 @@ namespace Nebula
 		// Send the vertex shader source code to GL
 		// Note that std::string's .c_str is NULL character terminated.
 		const GLchar* source = vertexSrc.c_str();
-		glShaderSource(vertexShader, 1, &source, 0);
+		glShaderSource(vertexShader, 1, &source, nullptr);
 
 		// Compile the vertex shader
 		glCompileShader(vertexShader);
@@ -30,7 +30,7 @@ namespace Nebula
 
 			// The maxLength includes the NULL character
 			std::vector<GLchar> infoLog(maxLength);
-			glGetShaderInfoLog(vertexShader, maxLength, &maxLength, &infoLog[0]);
+			glGetShaderInfoLog(vertexShader, maxLength, &maxLength, infoLog.data());
 
 			// We don't need the shader anymore.
 			glDeleteShader(vertexShader);
@@ -46,7 +46,7 @@ namespace Nebula
 		// Send the fragment shader source code to GL
 		// Note that std::string's .c_str is NULL character terminated.
 		source = fragmentSrc.c_str();
-		glShaderSource(fragmentShader, 1, &source, 0);
+		glShaderSource(fragmentShader, 1, &source, nullptr);
 
 		// Compile the fragment shader
 		glCompileShader(fragmentShader);
@@ -59,7 +59,7 @@ namespace Nebula
 
 			// The maxLength includes the NULL character
 			std::vector<GLchar> infoLog(maxLength);
-			glGetShaderInfoLog(fragmentShader, maxLength, &maxLength, &infoLog[0]);
+            glGetShaderInfoLog(fragmentShader, maxLength, &maxLength, infoLog.data());
 
 			// We don't need the shader anymore.
 			glDeleteShader(fragmentShader);
@@ -94,7 +94,7 @@ namespace Nebula
 
 			// The maxLength includes the NULL character
 			std::vector<GLchar> infoLog(maxLength);
-			glGetProgramInfoLog(program, maxLength, &maxLength, &infoLog[0]);
+			glGetProgramInfoLog(program, maxLength, &maxLength, infoLog.data());
 
 			// We don't need the program anymore.
 			glDeleteProgram(program);
@@ -127,14 +127,14 @@ namespace Nebula
 		glUseProgram(0);
 	}
 
-	void Shader::UploadUniformMat4(const std::string& name, const glm::mat4& matrix)
+	void Shader::UploadUniformMat4(const std::string& name, const glm::mat4& matrix) const
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 
 	void Shader::UploadUniformFloat4(const std::string& name, const float& x, const float& y, const float& z,
-		const float& w)
+		const float& w) const
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 		glUniform4f(location, x, y, z, w);

@@ -9,8 +9,8 @@ namespace Nebula
 	{
 		switch (RendererManager::GetAPI())
 		{
-		case RendererApi::API::None:		return nullptr;
-		case RendererApi::API::OpenGl:	return new OpenGLVertexBuffer(vertices, size);
+			case RendererApi::API::None:		return nullptr;
+			case RendererApi::API::OpenGl:	return new OpenGLVertexBuffer(vertices, size);
 		}
 
 		return nullptr;
