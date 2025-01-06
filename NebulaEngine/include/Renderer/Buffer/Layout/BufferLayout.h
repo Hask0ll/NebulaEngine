@@ -10,7 +10,6 @@ namespace Nebula
 	{
 	public:
 		BufferLayout() = default;
-
 		BufferLayout(std::initializer_list<BufferElement> elements)
 			: m_Elements(elements)
 		{

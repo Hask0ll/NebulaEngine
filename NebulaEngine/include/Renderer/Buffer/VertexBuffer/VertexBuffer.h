@@ -1,10 +1,11 @@
 #pragma once
 
+#include "Core/Core.h"
 #include "Renderer/Buffer/Layout/BufferLayout.h"
 
 namespace Nebula
 {
-	class VertexBuffer : public BufferLayout
+	class NEBULA VertexBuffer : public BufferLayout
 	{
 	public:
 

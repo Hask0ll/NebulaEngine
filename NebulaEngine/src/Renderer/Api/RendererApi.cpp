@@ -1,6 +1,6 @@
 #include "Renderer/Api/RendererApi.h"
 
-#include "Platforms/OpenGL/RendererApi/OpenGLRendererApi.h"
+#include "Platforms/OpenGL/Renderer/OpenGLRendererApi.h"
 
 namespace Nebula
 {

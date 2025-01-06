@@ -57,6 +57,6 @@ namespace Nebula
         static API GetAPI() { return s_API; }
 
     private:
-        inline static API s_API; /**< The currently active rendering API. */
+        static API s_API; /**< The currently active rendering API. */
     };
 }

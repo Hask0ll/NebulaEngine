@@ -4,11 +4,17 @@
 #include "Renderer/Manager/RendererManager.h"
 #include "Renderer/Buffer/Buffer.h"
 #include "Renderer/Render/Render.h"
+#include <iostream>
 
 TriangleShape::TriangleShape()
 {
 	m_triangleVA.reset(Nebula::VertexArray::Create());
 	m_triangleVB.reset(Nebula::VertexBuffer::Create(m_vertices, sizeof(m_vertices)));
+	if (!m_triangleVB)
+	{
+		std::cerr << "Failed to create VertexBuffer" << std::endl;
+		return;
+	}
 	m_triangleVB->SetLayout({
 			{Nebula::ShaderDataType::Float3,  "aPosition" }
 		});

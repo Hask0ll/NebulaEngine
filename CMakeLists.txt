@@ -1,4 +1,4 @@
-﻿# CMakeList.txt : CMake project for Nebula, include source and define
+﻿ # CMakeList.txt : CMake project for Nebula, include source and define
 # project specific logic here.
 #
 cmake_minimum_required (VERSION 3.8)
@@ -86,6 +86,8 @@ add_library(Nebula
 
     # Renderer - Manager
     NebulaEngine/src/Renderer/Manager/RendererManager.cpp
+
+    NebulaEngine/src/Renderer/Api/RendererApi.cpp
 
     # Renderer - Render - Texture
     NebulaEngine/src/Renderer/Render/Texture/Texture.cpp

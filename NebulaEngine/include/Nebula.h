@@ -26,6 +26,10 @@
 #include "Renderer/Render/Texture/Texture.h"
 #include "Renderer/Render/Render.h"
 
+#include "Platforms/OpenGL/Buffer/IndexBuffer/OpenGLIndexBuffer.h"
+#include "Platforms/OpenGL/Buffer/VertexBuffer/OpenGLVertexBuffer.h"
+
+
 #include "Layer/Layer.h"
 #include "Layer/LayerStack.h"
 #include "TimeStep/TimeStep.h"

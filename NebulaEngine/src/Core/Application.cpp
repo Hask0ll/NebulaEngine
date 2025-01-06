@@ -16,13 +16,18 @@
 #include "Renderer/Shape/Rectangle/RectangleShape.h"
 #include "Window/Window.h"
 #include "TimeStep/TimeStep.h"
+#include <Renderer/Shape/Triangle/TriangleShape.h>
 
 namespace Nebula
 {
 	Application::Application()
 	{
+		if (s_Instance)
+			throw "connard";
+
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
+		s_Instance = this;
 	}
 
 	Application::~Application()
@@ -78,13 +83,6 @@ namespace Nebula
 		{
 			float time = (float)glfwGetTime();
 			TimeStep timestep = time - m_LastFrameTime;
-
-			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
-			RenderCommand::Clear();
-
-			RendererManager::BeginScene();
-
-			RendererManager::EndScene();
 
 			m_LastFrameTime = time;
 			for (Layer* layer : m_LayerStack)
