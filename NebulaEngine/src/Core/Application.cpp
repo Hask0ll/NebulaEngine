@@ -20,11 +20,10 @@
 
 namespace Nebula
 {
-	Application::Application()
+	Application::Application() : m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
 	{
 		if (s_Instance)
 			throw "connard";
-
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
 		s_Instance = this;

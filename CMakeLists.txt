@@ -87,7 +87,11 @@ add_library(Nebula
     # Renderer - Manager
     NebulaEngine/src/Renderer/Manager/RendererManager.cpp
 
+    # Renderer - Api
     NebulaEngine/src/Renderer/Api/RendererApi.cpp
+
+    # Renderer - Camera
+    NebulaEngine/src/Renderer/Camera/OrthographicCamera.cpp
 
     # Renderer - Render - Texture
     NebulaEngine/src/Renderer/Render/Texture/Texture.cpp
@@ -171,6 +175,9 @@ target_sources(Nebula
 
   # Renderer - Manager
   NebulaEngine/include/Renderer/Manager/RendererManager.h
+
+  # Renderer - Camera
+  NebulaEngine/Include/Renderer/Camera/OrthographicCamera.h
 
   # Inputs
   NebulaEngine/include/Inputs/InputManager.h

@@ -9,6 +9,7 @@
 #include "Renderer/Buffer/VertexBuffer/VertexBuffer.h"
 #include "Renderer/Render/Shader/Shader.h"
 #include "Window/Window.h"
+#include "Renderer/Camera/OrthographicCamera.h"
 
 /**
  * @file Application.h
@@ -154,6 +155,8 @@ namespace Nebula
 		inline static Application* s_Instance;          /**< Pointer to the application instance (singleton pattern). */
 		LayerStack m_LayerStack;        /**< Stack of layers managed by the application. */
 		float m_LastFrameTime = 0.0f;     /**< Time of the last frame, used for time management. */
+
+		OrthographicCamera m_Camera; /**< The main camera of the application. */
 	};
 
 	/**
