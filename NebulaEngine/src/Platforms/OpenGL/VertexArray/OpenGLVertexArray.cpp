@@ -53,7 +53,7 @@ namespace Nebula
 			glEnableVertexAttribArray(index);
 			glVertexAttribPointer(index, element.GetComponentCount(),
 				ShaderDataTypeToOpenGLType(element.Type), element.Normalized ? GL_TRUE : GL_FALSE,
-				layout.GetStride(), (const void*)element.Offset);
+				layout.GetStride(), reinterpret_cast<const void *>(element.Offset));
 			index++;
 		}
 		m_VertexBuffers.push_back(vertexBuffer);

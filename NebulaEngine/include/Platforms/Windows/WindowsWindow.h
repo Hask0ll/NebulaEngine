@@ -29,7 +29,7 @@ namespace Nebula
 	private:
 		struct Internal;
 		std::unique_ptr<Internal> m_impl;
-		OpenGLContext* m_Context;
+		OpenGLContext* m_Context{};
 
 		struct WindowData
 		{

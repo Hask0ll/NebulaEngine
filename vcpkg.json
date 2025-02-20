@@ -1,20 +1,17 @@
 {
-  "name": "nebula",
-  "description": "Welcome to Nebula Engine",
-  "version-string": "0.1.0",
-  "maintainers": [
-    "https://github.com/Hask0ll"
-  ],
-  "supports": "windows",
-  "dependencies": [
-    "fmt",
-    "glad",
-    "glew",
-    "glfw3",
-    "glm",
-    "gtest",
-    "imgui",
-    "opengl",
-    "spdlog"
-  ]
+  "name" : "nebula",
+  "description" : "Welcome to Nebula Engine",
+  "version-string" : "0.1.0",
+  "maintainers" : [ "https://github.com/Hask0ll" ],
+  "supports" : "windows",
+  "dependencies" : [ "glad", "glew", "glfw3", "glm", "gtest", "imgui", "opengl", "spdlog", {
+    "name" : "fmt",
+    "version>=" : "11.0.2#1"
+  },
+    "sfml",
+    {
+      "name": "imgui",
+      "features": [ "glfw-binding", "opengl3-binding" ]
+    },
+  "imgui-sfml"]
 }

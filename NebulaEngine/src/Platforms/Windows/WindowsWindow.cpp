@@ -32,12 +32,12 @@ namespace Nebula
 	WindowsWindow::WindowsWindow(const WindowProps& props)
 		: m_impl(std::make_unique<Internal>())
 	{
-		Init(props);
+		WindowsWindow::Init(props);
 	}
 
 	WindowsWindow::~WindowsWindow()
 	{
-		Shutdown();
+		WindowsWindow::Shutdown();
 	}
 
 	void WindowsWindow::Init(const WindowProps& props)
@@ -50,10 +50,12 @@ namespace Nebula
 
 		if (s_GLFWInitialized == 0)
 		{
-			// TODO: glfwTerminate on system shutdown
 			int succes = glfwInit();
 
-			NB_CORE_INFO("Initializing GLFW {0}", succes);
+			if (!succes)
+				NB_CORE_ERROR("Could not initialize GLFW");
+			else
+				NB_CORE_INFO("Initializing GLFW {0}", succes);
 
 			glfwSetErrorCallback(GLFWErrorCallBack);
 
@@ -68,7 +70,7 @@ namespace Nebula
 
 			s_GLFWInitialized = true;
 
-			m_impl->m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+			m_impl->m_Window = glfwCreateWindow(static_cast<int>(props.Width), static_cast<int>(props.Height), m_Data.Title.c_str(), nullptr, nullptr);
 
 			m_Context = new OpenGLContext(m_impl->m_Window);
 			m_Context->Init();

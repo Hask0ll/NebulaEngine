@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include "Core/Core.h"
 #include "Events/ApplicationEvent.h"
 #include "Events/Event.h"
@@ -10,6 +12,7 @@
 #include "Renderer/Render/Shader/Shader.h"
 #include "Window/Window.h"
 #include "Renderer/Camera/OrthographicCamera.h"
+#include "ImGui/ImGuiLayer.h"
 
 /**
  * @file Application.h

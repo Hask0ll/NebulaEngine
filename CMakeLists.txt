@@ -14,6 +14,11 @@ if (POLICY CMP0141)
   set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
 endif()
 
+if(DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+ set(CMAKE_TOOLCHAIN_FILE "C:Dev/vcpkg/scripts/buildsystems/vcpkg.cmake"
+         CACHE STRING "")
+endif()
+
 # Set the project name
 project ("NebulaEngine")
 
@@ -72,9 +77,6 @@ add_library(Nebula
     # Renderer - Buffer - InderBuffer
     NebulaEngine/src/Renderer/Buffer/IndexBuffer/IndexBuffer.cpp
 
-    # Renderer - Buffer
-    NebulaEngine/src/Renderer/Buffer/Buffer.cpp
-
     # Renderer - Shape - Rectangle
     NebulaEngine/src/Renderer/Shape/Rectangle/RectangleShape.cpp
 
@@ -101,6 +103,9 @@ add_library(Nebula
 
     # Layer 
     NebulaEngine/src/Layer/Layer.cpp NebulaEngine/src/Layer/LayerStack.cpp
+
+    # ImGui
+    NebulaEngine/src/ImGui/ImGuiLayer.cpp
     )
 target_compile_definitions(Nebula PRIVATE NEBULA_EXPORTS)
 
@@ -187,9 +192,10 @@ target_sources(Nebula
 
   # TimeStep
   NebulaEngine/include/TimeStep/TimeStep.h
-)
 
-# Add source to this project's executable.
+  # ImGui
+  NebulaEngine/include/ImGui/ImGuiLayer.h
+)
 
 # Add the Game executable
 add_executable (Game "Game/Game.cpp") 
@@ -206,7 +212,18 @@ target_sources(Nebula
 )
 
 # Link libraries
-target_link_libraries(Nebula PUBLIC glm::glm fmt::fmt spdlog::spdlog glad::glad glfw GLEW::glew imgui::imgui)
+ target_link_libraries(Nebula
+         PUBLIC
+         glm::glm
+         spdlog::spdlog
+         glad::glad
+         glfw
+         GLEW::glew
+         imgui::imgui
+         fmt::fmt
+         opengl32
+         glu32
+ )
 target_link_libraries(Game PRIVATE Nebula)
 target_link_libraries(NebulaTests PRIVATE Nebula fmt::fmt GTest::gtest_main)
 

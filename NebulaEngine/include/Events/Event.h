@@ -41,7 +41,7 @@ namespace Nebula
 	 * This macro defines a static function to get the event type, a virtual function to return the event type,
 	 * and a function to return the name of the event.
 	 */
-#define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::##type; }\
+#define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::type; }\
 									virtual EventType GetEventType() const override { return GetStaticType(); }\
 									virtual const char* GetName() const override { return #type; }
 
