@@ -122,7 +122,7 @@ namespace Nebula
 		glUseProgram(m_RendererID);
 	}
 
-	void Shader::UnBind() const
+	void Shader::UnBind()
 	{
 		glUseProgram(0);
 	}

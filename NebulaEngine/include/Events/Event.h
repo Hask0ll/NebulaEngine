@@ -18,7 +18,7 @@ namespace Nebula
 		None = 0,
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
 		AppTick, AppUpdate, AppRender,
-		KeyPressed, KeyReleased,
+		KeyPressed, KeyReleased, KeyTyped,
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
 
@@ -63,36 +63,38 @@ namespace Nebula
 		friend class EventDispatcher;
 
 	public:
+		virtual ~Event() = default;
+
 		/**
 		 * \brief Get the type of the event.
 		 * \return The EventType of the event.
 		 */
-		virtual EventType GetEventType() const = 0;
+		[[nodiscard]] virtual EventType GetEventType() const = 0;
 
 		/**
 		 * \brief Get the name of the event.
 		 * \return The name of the event as a const char*.
 		 */
-		virtual const char* GetName() const = 0;
+		[[nodiscard]] virtual const char* GetName() const = 0;
 
 		/**
 		 * \brief Get the category flags of the event.
 		 * \return The category flags as an integer.
 		 */
-		virtual int GetCategoryFlags() const = 0;
+		[[nodiscard]] virtual int GetCategoryFlags() const = 0;
 
 		/**
 		 * \brief Convert the event to a string.
 		 * \return The event as a std::string.
 		 */
-		virtual std::string ToString() const { return GetName(); }
+		[[nodiscard]] virtual std::string ToString() const { return GetName(); }
 
 		/**
 		 * \brief Check if the event is in a specific category.
 		 * \param category The category to check against.
 		 * \return true if the event is in the category, false otherwise.
 		 */
-		inline bool IsInCategory(EventCategory category)
+		[[nodiscard]] inline bool IsInCategory(const EventCategory category) const
 		{
 			return GetCategoryFlags() & category;
 		}
@@ -101,7 +103,7 @@ namespace Nebula
 		 * \brief Check if the event has been handled.
 		 * \return true if the event has been handled, false otherwise.
 		 */
-		inline bool IsHandled() const { return m_Handled; }
+		[[nodiscard]] inline bool IsHandled() const { return m_Handled; }
 
 	protected:
 		bool m_Handled = false; /**< Indicates whether the event has been handled. */
@@ -122,7 +124,7 @@ namespace Nebula
 		 * \brief Construct an EventDispatcher for a specific event.
 		 * \param event The event to be dispatched.
 		 */
-		EventDispatcher(Event& event)
+		explicit EventDispatcher(Event& event)
 			: m_Event(event)
 		{
 		}
@@ -169,7 +171,7 @@ namespace Nebula
 template <>
 struct fmt::formatter<Nebula::Event>
 {
-	constexpr auto parse(fmt::format_parse_context& ctx) { return ctx.begin(); }
+	static constexpr auto parse(fmt::format_parse_context& ctx) { return ctx.begin(); }
 
 	template <typename FormatContext>
 	auto format(const Nebula::Event& e, FormatContext& ctx)

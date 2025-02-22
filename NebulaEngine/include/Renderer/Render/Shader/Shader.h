@@ -13,7 +13,7 @@ namespace Nebula
 		~Shader();
 
 		void Bind() const;
-		void UnBind() const;
+		void UnBind() ;
 
 		void UploadUniformMat4(const std::string& name, const glm::mat4& matrix) const;
 		void UploadUniformFloat4(const std::string& name, const float& x, const float& y, const float& z, const float& w) const;

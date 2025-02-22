@@ -49,6 +49,11 @@ namespace Nebula
         virtual void OnEvent(Event& event) {}
 
         /**
+         * @brief Called to render the ImGui elements of the layer.
+         */
+        virtual void OnImGuiRender() {}
+
+        /**
          * @brief Get the name of the layer.
          * @return const std::string& The name of the layer.
          */

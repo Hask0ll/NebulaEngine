@@ -9,8 +9,8 @@ namespace Nebula
 	public:
 		ImGuiLayer();
 		~ImGuiLayer();
-		virtual void OnAttach() override;
-		virtual void OnDetach() override;
+		void OnAttach() override;
+		void OnDetach() override;
 		virtual void OnImGuiRender();
 		void static Begin();
 		void static End();

@@ -23,6 +23,7 @@
 
 namespace Nebula
 {
+	class VertexArray;
 	/**
 	 * \brief Application class
 	 *
@@ -153,6 +154,13 @@ namespace Nebula
 
 	private:
 
+		struct Square {
+			glm::vec3 Position;
+			glm::vec3 Color;
+			// Vous pouvez ajouter d'autres propriétés comme la taille, rotation, etc.
+		};
+		std::vector<Square> m_Squares;
+
 		std::shared_ptr<Window> m_Window; /**< The main window of the application. */
 		bool m_Running = true;            /**< Flag indicating whether the application is running. */
 		inline static Application* s_Instance;          /**< Pointer to the application instance (singleton pattern). */
@@ -160,6 +168,14 @@ namespace Nebula
 		float m_LastFrameTime = 0.0f;     /**< Time of the last frame, used for time management. */
 
 		OrthographicCamera m_Camera; /**< The main camera of the application. */
+
+		ImGuiLayer *m_ImGuiLayer;
+
+		std::shared_ptr<Nebula::Shader> m_Shader;
+		std::shared_ptr<Nebula::VertexArray> m_VertexArray;
+
+		std::shared_ptr<Nebula::Shader> m_BlueShader;
+		std::shared_ptr<Nebula::VertexArray> m_SquareVA;
 	};
 
 	/**

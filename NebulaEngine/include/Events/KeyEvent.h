@@ -79,28 +79,43 @@ namespace Nebula {
 	 *
 	 * This event is triggered when a key is released. It includes the key code of the released key.
 	 */
-	class NEBULA KeyReleasedEvent : public KeyEvent
+	class NEBULA KeyReleasedEvent final : public KeyEvent
 	{
 	public:
 		/**
 		 * \brief Constructor for KeyReleasedEvent.
 		 * \param keycode The key code of the released key.
 		 */
-		KeyReleasedEvent(int keycode)
+		explicit KeyReleasedEvent(int keycode)
 			: KeyEvent(keycode) {}
 
 		/**
 		 * \brief Convert the event to a string for logging or debugging.
 		 * \return A string representation of the event.
 		 */
-		std::string ToString() const override
+		[[nodiscard]] std::string ToString() const override
 		{
 			std::stringstream ss;
 			ss << "KeyReleasedEvent: " << m_KeyCode;
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(KeyReleased)
+		EVENT_CLASS_TYPE(KeyReleased) 
 		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
+	};
+
+	class NEBULA KeyTypedEvent final : public KeyEvent
+	{
+	public:
+		explicit KeyTypedEvent(int keycode)
+			: KeyEvent(keycode) {}
+
+		[[nodiscard]] std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "KeyTypedEvent: " << m_KeyCode;
+			return ss.str();
+		}
+
 	};
 }
