@@ -4,6 +4,7 @@
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 #include <GLFW/glfw3.h>
+#include <glm/gtc/type_ptr.inl>
 
 #include "Logger/Log.h"
 
@@ -18,8 +19,20 @@ namespace Nebula
 
 	void ImGuiLayer::OnImGuiRender()
 	{
-		static bool show = true;
-		ImGui::ShowDemoWindow(&show);
+		ImGui::Begin("Square Creator");
+
+		static glm::vec3 position(0.0f);
+		static glm::vec4 color(1.0f, 0.0f, 0.0f, 1.0f);
+
+		ImGui::DragFloat3("Position", glm::value_ptr(position), 0.1f);
+		ImGui::ColorEdit4("Color", glm::value_ptr(color));
+
+		if (ImGui::Button("Add Square"))
+		{
+			Application::Get().AddSquare({position, color});
+		}
+
+		ImGui::End();
 	}
 
 	void ImGuiLayer::OnAttach()

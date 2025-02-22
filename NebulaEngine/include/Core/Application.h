@@ -152,15 +152,17 @@ namespace Nebula
 		  */
 		void Stop() { m_Running = false; }
 
-	private:
-
 		struct Square {
 			glm::vec3 Position;
 			glm::vec3 Color;
 			// Vous pouvez ajouter d'autres propriétés comme la taille, rotation, etc.
 		};
-		std::vector<Square> m_Squares;
 
+		void AddSquare(const Square& square);
+
+
+	private:
+		std::vector<Square> m_Squares;
 		std::shared_ptr<Window> m_Window; /**< The main window of the application. */
 		bool m_Running = true;            /**< Flag indicating whether the application is running. */
 		inline static Application* s_Instance;          /**< Pointer to the application instance (singleton pattern). */

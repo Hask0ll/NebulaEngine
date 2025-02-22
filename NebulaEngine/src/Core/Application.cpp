@@ -59,11 +59,10 @@ namespace Nebula
 		m_SquareVA.reset(Nebula::VertexArray::Create());
 
 		float vertices2[4 * 3] = {
-			// x     y     z
-			0.0f,  0.5f, 0.0f,    // top left
-			0.0f,  0.0f, 0.0f,    // bottom left
-			0.5f,  0.0f, 0.0f,    // bottom right
-			0.5f,  0.5f, 0.0f     // top right
+			-0.5f,  0.5f, 0.0f,    // top left
+			-0.5f, -0.5f, 0.0f,    // bottom left
+			 0.5f, -0.5f, 0.0f,    // bottom right
+			 0.5f,  0.5f, 0.0f     // top right
 		};
 
 		NB_CORE_TRACE("Creating square vertex buffer...");
@@ -87,29 +86,22 @@ namespace Nebula
 		m_SquareVA->SetIndexBuffer(squareIB);
 
 		std::string vsSrc2 = R"(#version 330 core
-		layout(location = 0) in vec3 aPos;
-		layout(location = 1) in vec4 aColor;
+	    layout(location = 0) in vec3 aPos;
 
-		out vec3 vPos;
-		out vec4 vColor;
-
-		void main()
-		{
-			vPos = aPos;
-			vColor = aColor;
-			gl_Position = vec4(aPos, 1.0);
-		})";
+	    void main()
+	    {
+	        gl_Position = vec4(aPos, 1.0);
+	    })";
 
 		std::string fsSrc2 = R"(#version 330 core
+	    layout(location = 0) out vec4 color;
 
-		layout(location = 0) out vec4 color;
+	    uniform vec4 u_Color;  // Ajoutez ceci
 
-		in vec3 vPos;
-
-		void main()
-		{
-			color = vec4(0.2, 0.4, 0.1, 1.0);
-		})";
+	    void main()
+	    {
+	        color = u_Color;  // Utilisez la couleur uniforme
+	    })";
 
 		const char* vsSrc = "#version 330 core\n"
 			"layout (location = 0) in vec3 aPos;\n"
@@ -175,11 +167,18 @@ namespace Nebula
 		return false;
 	}
 
+	void Application::AddSquare(const Square& square)
+	{
+		m_Squares.push_back(square);
+	}
+
 	void Application::Run()
 	{
 		NB_CORE_TRACE("Nebula Engine is Running !");
 		NB_CORE_TRACE("Initialize Log.");
 		NB_CORE_TRACE("Application::Run started");
+
+		WindowResizeEvent e(1280, 720);
 
 		while(m_Running)
 		{
@@ -188,33 +187,49 @@ namespace Nebula
 				TimeStep timestep = time - m_LastFrameTime;
 				m_LastFrameTime = time;
 
-				NB_CORE_TRACE("Starting frame");
-
 				RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 				RenderCommand::Clear();
 
+				m_Camera.SetRotation(0.5f);
 				// Update des layers
 				for (Layer* layer : m_LayerStack) {
 					NB_CORE_TRACE("Updating layer: {0}", layer->GetName());
 					layer->OnUpdate(timestep);
 				}
 
-				// ImGui rendering
-				NB_CORE_TRACE("Starting ImGui frame");
-				m_ImGuiLayer->Begin();
+				Nebula::ImGuiLayer::Begin();
 
-				RendererManager::BeginScene();
+				RendererManager::BeginScene(m_Camera);
 
-				if (m_BlueShader && m_SquareVA) {
-					m_BlueShader->Bind();
+				if (m_BlueShader && m_SquareVA)
+				{
+					// Vérifiez que l'index buffer est présent
+					auto indexBuffer = m_SquareVA->GetIndexBuffer();
+					if (!indexBuffer) {
+						NB_CORE_ERROR("No index buffer!");
+					} else {
+						NB_CORE_TRACE("Index buffer count: {0}", indexBuffer->GetCount());
+					}
+
 					for(const auto& square : m_Squares)
 					{
-						// Créer une matrice de transformation pour chaque carré
+						RendererManager::Submit(m_SquareVA, m_BlueShader);
+					}
+
+					// Check for OpenGL errors
+					GLenum error = glGetError();
+					if (error != GL_NO_ERROR) {
+						NB_CORE_ERROR("OpenGL Error: {0}", error);
+					}
+					for(const auto& square : m_Squares)
+					{
 						glm::mat4 transform = glm::translate(glm::mat4(1.0f), square.Position);
 						m_BlueShader->UploadUniformMat4("u_Transform", transform);
 						m_BlueShader->UploadUniformFloat4("u_Color", square.Color.r, square.Color.g, square.Color.b, square.Color.s);
 						RendererManager::Submit(m_SquareVA, m_BlueShader);
 					}
+				} else {
+					NB_CORE_ERROR("Shader or VAO is null!");
 				}
 
 				RendererManager::EndScene();
@@ -224,13 +239,12 @@ namespace Nebula
 					layer->OnImGuiRender();
 				}
 
-				NB_CORE_TRACE("Ending ImGui frame");
-				m_ImGuiLayer->End();
+				Nebula::ImGuiLayer::End();
 
 				m_Window->OnUpdate();
 
-			} catch (const std::exception& e) {
-				NB_CORE_ERROR("Exception in main loop: {0}", e.what());
+			} catch (const std::exception& exception) {
+				NB_CORE_ERROR("Exception in main loop: {0}", exception.what());
 				break;
 			}
 		}
