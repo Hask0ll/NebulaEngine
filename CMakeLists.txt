@@ -228,5 +228,4 @@ target_link_libraries(Game PRIVATE Nebula)
 target_link_libraries(NebulaTests PRIVATE Nebula fmt::fmt GTest::gtest_main)
 
 # Add tests to CTest
-enable_testing()
-add_test(NAME NebulaTests COMMAND NebulaTests)
+ add_subdirectory(Tests)
