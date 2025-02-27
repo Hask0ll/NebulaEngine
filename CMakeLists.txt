@@ -198,10 +198,7 @@ target_sources(Nebula
 )
 
 # Add the Game executable
-add_executable (Game "Game/Game.cpp") 
-
-# Add the Tests executable
-add_executable (NebulaTests "Tests/Units/RunTests.cpp")
+add_executable (Game "Game/Game.cpp")
 
 # Add the source files
 target_sources(Nebula
@@ -225,7 +222,6 @@ target_sources(Nebula
          glu32
  )
 target_link_libraries(Game PRIVATE Nebula)
-target_link_libraries(NebulaTests PRIVATE Nebula fmt::fmt GTest::gtest_main)
 
 # Add tests to CTest
  add_subdirectory(Tests)

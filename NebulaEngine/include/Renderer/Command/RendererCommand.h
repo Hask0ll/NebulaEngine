@@ -33,6 +33,11 @@ namespace Nebula
 			s_RendererApi->DrawIndexed(vertexArray, indexCount);
 		}
 
+		static RendererApi* GetApi()
+		{
+			return s_RendererApi;
+		}
+
 		//static void DrawLines(const std::shared_ptr<VertexArray>& vertexArray, uint32_t vertexCount)
 		//{
 		//	s_RendererAPI->DrawLines(vertexArray, vertexCount);
