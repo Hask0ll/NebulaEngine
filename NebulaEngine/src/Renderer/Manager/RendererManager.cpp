@@ -27,20 +27,11 @@ namespace Nebula
 
 	void RendererManager::Submit(const std::shared_ptr<VertexArray>& vertexArray, const std::shared_ptr<Shader>& shader, const glm::mat4& transform)
 	{
-		const unsigned int screenWidth = Application::Get().GetWindow().GetWidth();
-		const unsigned int screenHeight = Application::Get().GetWindow().GetHeight();
-
-		// Orthographic projection matrix
-        glm::mat4 projectionMatrix = glm::ortho(0.0f, static_cast<float>(screenWidth), static_cast<float>(screenHeight), 0.0f, -1.0f, 1.0f);
-		glm::mat4 viewMatrix = glm::mat4(1.0f);
-		glm::mat4 tmp = projectionMatrix * viewMatrix * transform;
-
 		shader->Bind();
 		shader->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+		shader->UploadUniformMat4("u_Transform", transform);
 
 		vertexArray->Bind();
 		RenderCommand::DrawIndexed(vertexArray);
-
-		glDrawElements(GL_TRIANGLES, vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 	}
 }

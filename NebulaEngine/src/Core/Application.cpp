@@ -85,13 +85,17 @@ namespace Nebula
 		squareIB.reset(Nebula::IndexBuffer::Create(squareI, sizeof(squareI)));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
-		std::string vsSrc2 = R"(#version 330 core
-	    layout(location = 0) in vec3 aPos;
+		std::string vsSrc2 = R"(
+			#version 330 core
+			layout(location = 0) in vec3 aPos;
 
-	    void main()
-	    {
-	        gl_Position = vec4(aPos, 1.0);
-	    })";
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			void main()
+			{
+				gl_Position = u_ViewProjection * u_Transform * vec4(aPos, 1.0);
+			})";
 
 		std::string fsSrc2 = R"(#version 330 core
 	    layout(location = 0) out vec4 color;
@@ -172,6 +176,32 @@ namespace Nebula
 		m_Squares.push_back(square);
 	}
 
+	void Application::HandleCameraInput(TimeStep ts)
+	{
+		glm::vec3 cameraPosition = m_Camera.GetPosition();
+
+		float cameraSpeed = 2.0f * ts;
+
+		if (Nebula::Input::IsKeyPressed(GLFW_KEY_W) || Nebula::Input::IsKeyPressed(GLFW_KEY_Z))
+		{
+			cameraPosition.y += cameraSpeed;
+		}
+		if (Nebula::Input::IsKeyPressed(GLFW_KEY_S))
+		{
+			cameraPosition.y -= cameraSpeed;
+		}
+		if (Nebula::Input::IsKeyPressed(GLFW_KEY_A) || Nebula::Input::IsKeyPressed(GLFW_KEY_Q))
+		{
+			cameraPosition.x -= cameraSpeed;
+		}
+		if (Nebula::Input::IsKeyPressed(GLFW_KEY_D))
+		{
+			cameraPosition.x += cameraSpeed;
+		}
+
+		m_Camera.SetPosition(cameraPosition);
+	}
+
 	void Application::Run()
 	{
 		NB_CORE_TRACE("Nebula Engine is Running !");
@@ -190,8 +220,8 @@ namespace Nebula
 				RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 				RenderCommand::Clear();
 
-				m_Camera.SetRotation(0.5f);
-				// Update des layers
+				HandleCameraInput(timestep);
+
 				for (Layer* layer : m_LayerStack) {
 					NB_CORE_TRACE("Updating layer: {0}", layer->GetName());
 					layer->OnUpdate(timestep);
@@ -213,20 +243,16 @@ namespace Nebula
 
 					for(const auto& square : m_Squares)
 					{
-						RendererManager::Submit(m_SquareVA, m_BlueShader);
+						glm::mat4 transform = glm::translate(glm::mat4(1.0f), square.Position);
+						m_BlueShader->UploadUniformMat4("u_Transform", transform);
+						m_BlueShader->UploadUniformFloat4("u_Color", square.Color.r, square.Color.g, square.Color.b, 1.0f); // Assuming alpha is 1.0f
+						RendererManager::Submit(m_SquareVA, m_BlueShader, transform);
 					}
 
 					// Check for OpenGL errors
 					GLenum error = glGetError();
 					if (error != GL_NO_ERROR) {
 						NB_CORE_ERROR("OpenGL Error: {0}", error);
-					}
-					for(const auto& square : m_Squares)
-					{
-						glm::mat4 transform = glm::translate(glm::mat4(1.0f), square.Position);
-						m_BlueShader->UploadUniformMat4("u_Transform", transform);
-						m_BlueShader->UploadUniformFloat4("u_Color", square.Color.r, square.Color.g, square.Color.b, square.Color.s);
-						RendererManager::Submit(m_SquareVA, m_BlueShader);
 					}
 				} else {
 					NB_CORE_ERROR("Shader or VAO is null!");

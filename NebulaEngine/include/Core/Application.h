@@ -162,6 +162,9 @@ namespace Nebula
 
 
 	private:
+
+		void HandleCameraInput(TimeStep ts);
+
 		std::vector<Square> m_Squares;
 		std::shared_ptr<Window> m_Window; /**< The main window of the application. */
 		bool m_Running = true;            /**< Flag indicating whether the application is running. */
